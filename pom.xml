@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    
+    <modelVersion>4.0.0</modelVersion>
+    <groupId>com.dell.cpsd.service.identity</groupId>
+    <name>Identity Service API</name>
+    <version>1.0-SNAPSHOT</version>
+    <artifactId>identity-service-api</artifactId>
+    <packaging>pom</packaging>
+
+    <parent>
+        <groupId>com.dell.cpsd</groupId>
+        <artifactId>root-parent</artifactId>
+        <version>0.1</version>
+    </parent>
+
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.jsonschema2pojo</groupId>
+                <artifactId>jsonschema2pojo-maven-plugin</artifactId>
+                <version>0.4.27</version>
+                <dependencies>
+                    <dependency>
+                        <groupId>com.dell.cpsd.common.messaging</groupId>
+                        <artifactId>common-contract-enricher</artifactId>
+                        <version>1.0-SNAPSHOT</version>
+                    </dependency>
+                </dependencies>
+                <executions>
+                    <execution>
+                        <id>generate-json-model-identity-service</id>
+                        <phase>generate-resources</phase>
+                        <goals>
+                            <goal>generate</goal>
+                        </goals>
+                        <configuration>
+                            <sourceDirectory>src/main/resources/identity-service-api/schema/json
+                            </sourceDirectory>
+                            <targetPackage>com.dell.cpsd.identity.service.api</targetPackage>
+                            <outputDirectory>${project.build.directory}/generated-sources/identity-service-api</outputDirectory>
+                            <removeOldOutput>true</removeOldOutput>
+                            <useLongIntegers>true</useLongIntegers>
+                            <includeConstructors>true</includeConstructors>
+                            <serializable>false</serializable>
+                            <useCommonsLang3>true</useCommonsLang3>
+                            <customAnnotator>com.dell.cpsd.common.contract.enricher.plugins.jsonschema2pojo.MessageAnnotator</customAnnotator>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-assembly-plugin</artifactId>
+                <executions>
+                    <execution>
+                        <id>create-distribution</id>
+                        <phase>package</phase>
+                        <goals>
+                            <goal>single</goal>
+                        </goals>
+                        <configuration>
+                            <descriptors>
+                                <descriptor>assembly/assembly.xml</descriptor>
+                            </descriptors>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+        </plugins>
+    </build>
+
+</project>

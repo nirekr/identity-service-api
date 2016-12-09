@@ -1,0 +1,33 @@
+{
+  "$schema": "http://json-schema.org/draft-04/schema#",
+  "type": "object",
+  "title": "IdentifyElementMessage",
+  "description": "The request to identify an element.",
+  "_meta": {
+    "message": "com.dell.cpsd.eids.identity.service.identify.element",
+    "version": "1.0"
+  },
+  "properties": {
+    "timestamp": {
+      "type": "date-time",
+      "javaType": "java.util.Date",
+      "title": "Message timestamp",
+      "description": "The creation time of the message."
+    },
+    "correlationId": {
+      "type": "string",
+      "title": "Correlation identifier",
+      "description": "The correlation identifier of the message."
+    },
+    "reply-to": {
+      "type": "string",
+      "javaName": "replyTo",
+      "title": "Reply-to identifier.",
+      "description": "The reply to queue binding on the response exchange"
+    }
+  },
+  "required": [
+    "timestamp",
+    "correlationId"
+  ]
+}
