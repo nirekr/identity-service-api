@@ -1,12 +1,6 @@
 {
   "$schema": "http://json-schema.org/draft-04/schema#",
   "type": "object",
-  "title": "IdentityServiceErrorMessage",
-  "description": "The message sent when there is an identity service error.",
-  "_meta": {
-    "message": "com.dell.cpsd.eids.identity.service.error",
-    "version": "1.0"
-  },
   "properties": {
     "timestamp": {
       "type": "date-time",
@@ -23,23 +17,15 @@
       "type": "string",
       "javaName": "replyTo",
       "title": "Reply-to identifier.",
-      "description": "The reply to queue binding on the response exchange."
+      "description": "The reply to queue binding on the response exchange"
     },
-    "errorCode": {
-      "type": "string",
-      "title": "Error code",
-      "description": "The error code provided by the service."
-    },
-    "errorMessage": {
-      "type": "string",
-      "title": "Error message",
-      "description": "The error details provided by the service."
+    "identity": {
+      "$ref": "Identity.jsd"
     }
   },
   "required": [
     "timestamp",
     "correlationId",
-    "errorCode",
-    "errorMessage"
+    "identity"
   ]
 }

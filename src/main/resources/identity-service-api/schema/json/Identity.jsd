@@ -1,0 +1,56 @@
+{
+  "type": "object",
+  "properties": {
+    "elementType": {
+      "type": "string"
+    },
+    "identifier": {
+      "type": "string"
+    },
+    "classification": {
+      "type": "string",
+      "enum": [
+        "SYSTEM",
+        "GROUP",
+        "SUBSYSTEM",
+        "DEVICE",
+        "SUBCOMPONENT"
+      ]
+    },
+    "parent": {
+      "$ref": "Identity.jsd"
+    },
+    "businessKeys": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "businessKeyType": {
+            "type": "string",
+            "enum": [
+              "STANDARD",
+              "ASSOCIATION",
+              "ABSOLUTE"
+            ]
+          },
+          "key": {
+            "type": "string"
+          },
+          "value": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "businessKeyType",
+          "key",
+          "value"
+        ]
+      }
+    }
+  },
+  "required": [
+    "identifier",
+    "elementType",
+    "businessKeys"
+  ]
+}
