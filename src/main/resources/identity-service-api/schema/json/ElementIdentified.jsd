@@ -1,6 +1,13 @@
 {
   "$schema": "http://json-schema.org/draft-04/schema#",
   "type": "object",
+  "_meta": {
+    "message": "dell.cpsd.core.identity.element.identified",
+    "version": "1.0",
+    "exchange": "exchange.dell.cpsd.eids.identity.service.response",
+    "bindingBase": "dell.cpsd.eids.identity.service.response",
+    "stereotype": "REPLY"
+  },
   "properties": {
     "timestamp": {
       "type": "date-time",
@@ -23,14 +30,11 @@
         "CREATED",
         "UPDATED"
       ]
-    },
-    "identity": {
-      "$ref": "Identity.jsd"
     }
   },
   "required": [
     "timestamp",
     "correlationId",
-    "identity"
+    "elementUuid"
   ]
 }

@@ -4,9 +4,6 @@
     "elementType": {
       "type": "string"
     },
-    "identifier": {
-      "type": "string"
-    },
     "classification": {
       "type": "string",
       "enum": [
@@ -17,8 +14,11 @@
         "SUBCOMPONENT"
       ]
     },
-    "parent": {
-      "$ref": "Identity.jsd"
+    "parents": {
+      "type": "array",
+      "items": {
+        "$ref": "Identity.jsd"
+      }
     },
     "businessKeys": {
       "type": "array",
@@ -28,7 +28,7 @@
           "businessKeyType": {
             "type": "string",
             "enum": [
-              "STANDARD",
+              "CONTEXTUAL",
               "ASSOCIATION",
               "ABSOLUTE"
             ]
@@ -49,8 +49,8 @@
     }
   },
   "required": [
-    "identifier",
     "elementType",
+    "classification",
     "businessKeys"
   ]
 }

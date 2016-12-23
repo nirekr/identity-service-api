@@ -1,6 +1,13 @@
 {
   "$schema": "http://json-schema.org/draft-04/schema#",
   "type": "object",
+  "_meta": {
+    "message": "dell.cpsd.core.identity.describe.element",
+    "version": "1.0",
+    "exchange": "exchange.dell.cpsd.eids.identity.service.request",
+    "routingKey": "dell.cpsd.eids.identity.service.request",
+    "stereotype": "REQUEST"
+  },
   "properties": {
     "timestamp": {
       "type": "date-time",

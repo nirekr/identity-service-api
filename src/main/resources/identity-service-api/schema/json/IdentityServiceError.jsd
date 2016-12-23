@@ -3,8 +3,11 @@
   "type": "object",
   "description": "The message sent when there is an identity service error.",
   "_meta": {
-    "message": "com.dell.cpsd.eids.identity.service.error",
-    "version": "1.0"
+    "message": "dell.cpsd.core.identity.service.error",
+    "version": "1.0",
+    "exchange": "exchange.dell.cpsd.eids.identity.service.response",
+    "bindingBase": "dell.cpsd.eids.identity.service.error",
+    "stereotype": "REPLY"
   },
   "properties": {
     "timestamp": {
@@ -17,12 +20,6 @@
       "type": "string",
       "title": "Correlation identifier",
       "description": "The correlation identifier of the message."
-    },
-    "reply-to": {
-      "type": "string",
-      "javaName": "replyTo",
-      "title": "Reply-to identifier.",
-      "description": "The reply to queue binding on the response exchange."
     },
     "errorCode": {
       "type": "string",
