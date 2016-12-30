@@ -4,8 +4,8 @@
   "_meta": {
     "message": "dell.cpsd.core.identity.describe.element",
     "version": "1.0",
-    "exchange": "exchange.dell.cpsd.eids.identity.service.request",
-    "routingKey": "dell.cpsd.eids.identity.service.request",
+    "exchange": "exchange.dell.cpsd.eids.identity.request",
+    "routingKey": "dell.cpsd.eids.identity.request",
     "stereotype": "REQUEST"
   },
   "properties": {

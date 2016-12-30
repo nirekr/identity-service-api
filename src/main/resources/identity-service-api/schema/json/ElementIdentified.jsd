@@ -4,8 +4,8 @@
   "_meta": {
     "message": "dell.cpsd.core.identity.element.identified",
     "version": "1.0",
-    "exchange": "exchange.dell.cpsd.eids.identity.service.response",
-    "bindingBase": "dell.cpsd.eids.identity.service.response",
+    "exchange": "exchange.dell.cpsd.eids.identity.response",
+    "bindingBase": "dell.cpsd.eids.identity.response",
     "stereotype": "REPLY"
   },
   "properties": {
