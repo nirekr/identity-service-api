@@ -1,0 +1,18 @@
+{
+  "timestamp": "2016-12-30T12:02:59Z",
+  "correlationId": "abcdabcd-abcd-abcd-abcd-abcdabcdabcd",
+  "elementType": "storagearray",
+  "classification": "DEVICE",
+  "businessKeys": [
+    {
+      "businessKeyType": "CONTEXTUAL",
+      "key": "copprhd-uuid",
+      "value": "copprh-123-456-789"
+    },
+    {
+      "businessKeyType": "CONTEXTUAL",
+      "key": "componentTag",
+      "value": "My-Storage-Array-1"
+    }
+  ]
+}

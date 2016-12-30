@@ -1,6 +1,5 @@
 {
   "timestamp": "2016-12-09T08:34:04.736Z",
-  "reply-to": "queue.dell.cpsd.eids.identity.service.response|myapplication.hostname",
   "correlationId": "abcdabcd-abcd-abcd-abcd-abcdabcdabcd",
   "errorCode": "E1234",
   "errorMessage": "something went wrong"

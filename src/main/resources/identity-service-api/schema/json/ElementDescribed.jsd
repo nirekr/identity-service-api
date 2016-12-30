@@ -1,0 +1,41 @@
+{
+  "$schema": "http://json-schema.org/draft-04/schema#",
+  "type": "object",
+  "_meta": {
+    "message": "dell.cpsd.core.identity.element.described",
+    "version": "1.0",
+    "exchange": "exchange.dell.cpsd.eids.identity.service.response",
+    "bindingBase": "dell.cpsd.eids.identity.service.response",
+    "stereotype": "REPLY"
+  },
+  "properties": {
+    "timestamp": {
+      "type": "date-time",
+      "javaType": "java.util.Date",
+      "title": "Message timestamp",
+      "description": "The creation time of the message."
+    },
+    "correlationId": {
+      "type": "string",
+      "title": "Correlation identifier",
+      "description": "The correlation identifier of the message."
+    },
+    "elementType": {
+      "type": "string"
+    },
+    "classification": {
+      "$ref": "Classification.jsd"
+    },
+    "businessKeys": {
+      "type": "array",
+      "items": {
+        "$ref": "BusinessKey.jsd"
+      }
+    }
+  },
+  "required": [
+    "timestamp",
+    "correlationId",
+    "elementUuid"
+  ]
+}

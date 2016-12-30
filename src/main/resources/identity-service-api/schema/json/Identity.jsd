@@ -5,14 +5,7 @@
       "type": "string"
     },
     "classification": {
-      "type": "string",
-      "enum": [
-        "SYSTEM",
-        "GROUP",
-        "SUBSYSTEM",
-        "DEVICE",
-        "SUBCOMPONENT"
-      ]
+      "$ref": "Classification.jsd"
     },
     "parents": {
       "type": "array",
@@ -23,28 +16,7 @@
     "businessKeys": {
       "type": "array",
       "items": {
-        "type": "object",
-        "properties": {
-          "businessKeyType": {
-            "type": "string",
-            "enum": [
-              "CONTEXTUAL",
-              "ASSOCIATION",
-              "ABSOLUTE"
-            ]
-          },
-          "key": {
-            "type": "string"
-          },
-          "value": {
-            "type": "string"
-          }
-        },
-        "required": [
-          "businessKeyType",
-          "key",
-          "value"
-        ]
+        "$ref": "BusinessKey.jsd"
       }
     }
   },

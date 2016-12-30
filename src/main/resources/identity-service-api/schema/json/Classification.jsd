@@ -1,0 +1,10 @@
+{
+  "type": "string",
+  "enum": [
+    "SYSTEM",
+    "GROUP",
+    "SUBSYSTEM",
+    "DEVICE",
+    "SUBCOMPONENT"
+  ]
+}
