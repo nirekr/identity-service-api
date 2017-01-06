@@ -6,8 +6,8 @@
     "message": "dell.cpsd.core.identity.service.error",
     "version": "1.0",
     "exchange": "exchange.dell.cpsd.eids.identity.response",
-    "bindingBase": "dell.cpsd.eids.identity.error",
-    "stereotype": "REPLY"
+    "routingKey": "dell.cpsd.eids.identity.error",
+    "stereotype": "ERROR"
   },
   "properties": {
     "timestamp": {

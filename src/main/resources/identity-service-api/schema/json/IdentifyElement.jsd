@@ -5,7 +5,7 @@
     "message": "dell.cpsd.core.identity.identify.element",
     "version": "1.0",
     "exchange": "exchange.dell.cpsd.eids.identity.request",
-    "bindingBase": "dell.cpsd.eids.identity.request",
+    "routingKey": "dell.cpsd.eids.identity.request",
     "stereotype": "REQUEST"
   },
   "properties": {
