@@ -11,6 +11,7 @@ import com.dell.cpsd.identity.service.api.DescribeElement;
 import com.dell.cpsd.identity.service.api.ElementDescribed;
 import com.dell.cpsd.identity.service.api.ElementIdentified;
 import com.dell.cpsd.identity.service.api.IdentifyElement;
+import com.dell.cpsd.identity.service.api.IdentityServiceError;
 import com.dell.cpsd.identity.service.api.client.amqp.adapters.ElementDescribedMessageAdapter;
 import com.dell.cpsd.identity.service.api.client.amqp.adapters.ElementIdentifiedMessageAdapter;
 import com.dell.cpsd.identity.service.api.client.amqp.adapters.IdentityServiceErrorMessageAdapter;
@@ -70,7 +71,7 @@ public class IdentityServiceClient extends AbstractServiceClient
         final IdentifyElement element = new IdentifyElement(timestamp(), uuid(), replyTo(IdentifyElement.class, ElementIdentified.class),
                 criteria.getIdentity());
 
-        ServiceResponse<ElementIdentified> response = processRequest(timeout, new ServiceRequestCallback()
+        ServiceResponse<?> response = processRequest(timeout, new ServiceRequestCallback()
         {
             @Override
             public String getRequestId()
@@ -85,7 +86,7 @@ public class IdentityServiceClient extends AbstractServiceClient
             }
         });
 
-        return response.getResponse();
+        return processResponse(response, ElementIdentified.class);
     }
 
     /**
@@ -119,11 +120,34 @@ public class IdentityServiceClient extends AbstractServiceClient
             }
         });
 
-        return response.getResponse();
+        return processResponse(response, ElementDescribed.class);
     }
 
     private String replyTo(Class request, Class reply)
     {
         return rabbitContext.getReplyTo(request, reply);
+    }
+
+    private <R> R processResponse(ServiceResponse<?> response, Class<R> expectedResponse) throws ServiceExecutionException
+    {
+        Object responseMessage = response.getResponse();
+        if (responseMessage == null)
+        {
+            return null;
+        }
+
+        if (expectedResponse.isAssignableFrom(responseMessage.getClass()))
+        {
+            return (R)responseMessage;
+        }
+        else if (responseMessage instanceof IdentityServiceError)
+        {
+            IdentityServiceError error = (IdentityServiceError)responseMessage;
+            throw new ServiceExecutionException(error.getErrorMessage());
+        }
+        else
+        {
+            throw new UnsupportedOperationException("Unexpected response message: " + responseMessage);
+        }
     }
 }

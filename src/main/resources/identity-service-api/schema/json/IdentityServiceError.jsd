@@ -11,8 +11,8 @@
   },
   "properties": {
     "timestamp": {
-      "type": "date-time",
-      "javaType": "java.util.Date",
+      "type": "string",
+      "format": "date-time",
       "title": "Message timestamp",
       "description": "The creation time of the message."
     },
