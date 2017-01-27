@@ -1,0 +1,24 @@
+{
+  "type": "object",
+  "properties": {
+    "correlationUuid": {
+      "type": "string",
+      "description": "The correlation identifier for consumer to distinguish resolved uuids."
+    },
+    "elementUuid": {
+      "type": "string"
+    },
+    "state": {
+      "type": "string",
+      "enum": [
+        "NOCHANGE",
+        "CREATED",
+        "UPDATED"
+      ]
+    }
+  },
+  "required": [
+    "elementUuid",
+    "state"
+  ]
+}

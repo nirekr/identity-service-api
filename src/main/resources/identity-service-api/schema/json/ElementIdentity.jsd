@@ -1,0 +1,17 @@
+{
+  "type": "object",
+  "properties": {
+    "correlationUuid": {
+      "type": "string",
+      "description": "The correlation identifier for consumer to distinguish resolved uuids."
+    },
+    "identity": {
+      "$ref": "Identity.jsd"
+    }
+  },
+  "required": [
+    "timestamp",
+    "correlationId",
+    "identity"
+  ]
+}

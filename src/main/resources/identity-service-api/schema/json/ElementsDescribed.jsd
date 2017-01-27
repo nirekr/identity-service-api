@@ -2,7 +2,7 @@
   "$schema": "http://json-schema.org/draft-04/schema#",
   "type": "object",
   "_meta": {
-    "message": "dell.cpsd.core.identity.element.identified",
+    "message": "dell.cpsd.core.identity.element.described",
     "version": "1.0",
     "exchange": "exchange.dell.cpsd.eids.identity.response",
     "routingKey": "dell.cpsd.eids.identity.response",
@@ -20,21 +20,16 @@
       "title": "Correlation identifier",
       "description": "The correlation identifier of the message."
     },
-    "elementUuid": {
-      "type": "string"
-    },
-    "state": {
-      "type": "string",
-      "enum": [
-        "NOCHANGE",
-        "CREATED",
-        "UPDATED"
-      ]
+    "elementDescriptions": {
+      "type": "array",
+      "items": {
+        "$ref": "ElementDescription.jsd"
+      }
     }
   },
   "required": [
     "timestamp",
     "correlationId",
-    "elementUuid"
+    "elementDescription"
   ]
 }

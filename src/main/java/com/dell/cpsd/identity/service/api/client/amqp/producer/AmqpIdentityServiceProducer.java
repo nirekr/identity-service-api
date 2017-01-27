@@ -6,8 +6,8 @@
 package com.dell.cpsd.identity.service.api.client.amqp.producer;
 
 import com.dell.cpsd.common.rabbitmq.template.OpinionatedRabbitTemplate;
-import com.dell.cpsd.identity.service.api.DescribeElement;
-import com.dell.cpsd.identity.service.api.IdentifyElement;
+import com.dell.cpsd.identity.service.api.DescribeElements;
+import com.dell.cpsd.identity.service.api.IdentifyElements;
 
 /**
  * <p>
@@ -27,13 +27,13 @@ public class AmqpIdentityServiceProducer implements IdentityServiceProducer
     }
 
     @Override
-    public void publishIdentifyElement(IdentifyElement identity)
+    public void publishIdentifyElements(IdentifyElements identity)
     {
         template.send(identity);
     }
 
     @Override
-    public void publishDescribeElement(DescribeElement identity)
+    public void publishDescribeElements(DescribeElements identity)
     {
         template.send(identity);
     }

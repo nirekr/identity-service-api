@@ -7,13 +7,13 @@ package com.dell.cpsd.identity.service.api.client;
 
 import com.dell.cpsd.common.logging.ILogger;
 import com.dell.cpsd.common.rabbitmq.context.RabbitContext;
-import com.dell.cpsd.identity.service.api.DescribeElement;
-import com.dell.cpsd.identity.service.api.ElementDescribed;
-import com.dell.cpsd.identity.service.api.ElementIdentified;
-import com.dell.cpsd.identity.service.api.IdentifyElement;
+import com.dell.cpsd.identity.service.api.DescribeElements;
+import com.dell.cpsd.identity.service.api.ElementsDescribed;
+import com.dell.cpsd.identity.service.api.ElementsIdentified;
+import com.dell.cpsd.identity.service.api.IdentifyElements;
 import com.dell.cpsd.identity.service.api.IdentityServiceError;
-import com.dell.cpsd.identity.service.api.client.amqp.adapters.ElementDescribedMessageAdapter;
-import com.dell.cpsd.identity.service.api.client.amqp.adapters.ElementIdentifiedMessageAdapter;
+import com.dell.cpsd.identity.service.api.client.amqp.adapters.ElementsDescribedMessageAdapter;
+import com.dell.cpsd.identity.service.api.client.amqp.adapters.ElementsIdentifiedMessageAdapter;
 import com.dell.cpsd.identity.service.api.client.amqp.adapters.IdentityServiceErrorMessageAdapter;
 import com.dell.cpsd.identity.service.api.client.amqp.producer.IdentityServiceProducer;
 import com.dell.cpsd.service.common.client.callback.ServiceResponse;
@@ -50,8 +50,8 @@ public class IdentityServiceClient extends AbstractServiceClient
 
     private void initCallbacks()
     {
-        this.consumer.addAdapter(new ElementDescribedMessageAdapter(this));
-        this.consumer.addAdapter(new ElementIdentifiedMessageAdapter(this));
+        this.consumer.addAdapter(new ElementsDescribedMessageAdapter(this));
+        this.consumer.addAdapter(new ElementsIdentifiedMessageAdapter(this));
         this.consumer.addAdapter(new IdentityServiceErrorMessageAdapter(this));
     }
 
@@ -64,12 +64,12 @@ public class IdentityServiceClient extends AbstractServiceClient
      * @throws ServiceExecutionException
      * @throws ServiceTimeoutException
      */
-    public ElementIdentified identifyElement(
-            final IdentifyElementCriteria criteria, final long timeout)
+    public ElementsIdentified identifyElements(
+            final IdentifyElementsCriteria criteria, final long timeout)
             throws ServiceExecutionException, ServiceTimeoutException
     {
-        final IdentifyElement element = new IdentifyElement(timestamp(), uuid(), replyTo(IdentifyElement.class, ElementIdentified.class),
-                criteria.getIdentity());
+        final IdentifyElements element = new IdentifyElements(timestamp(), uuid(), replyTo(IdentifyElements.class, ElementsIdentified.class),
+                criteria.getElementIdentities());
 
         ServiceResponse<?> response = processRequest(timeout, new ServiceRequestCallback()
         {
@@ -82,11 +82,11 @@ public class IdentityServiceClient extends AbstractServiceClient
             @Override
             public void executeRequest(String requestId) throws Exception
             {
-                producer.publishIdentifyElement(element);
+                producer.publishIdentifyElements(element);
             }
         });
 
-        return processResponse(response, ElementIdentified.class);
+        return processResponse(response, ElementsIdentified.class);
     }
 
     /**
@@ -98,14 +98,14 @@ public class IdentityServiceClient extends AbstractServiceClient
      * @throws ServiceExecutionException
      * @throws ServiceTimeoutException
      */
-    public ElementDescribed describeElement(
-            final DescribeElementCriteria criteria, final long timeout)
+    public ElementsDescribed describeElements(
+            final DescribeElementsCriteria criteria, final long timeout)
             throws ServiceExecutionException, ServiceTimeoutException
     {
-        final DescribeElement element = new DescribeElement(timestamp(), uuid(), replyTo(DescribeElement.class, ElementDescribed.class),
+        final DescribeElements element = new DescribeElements(timestamp(), uuid(), replyTo(DescribeElements.class, ElementsDescribed.class),
                 criteria.getElementUuid());
 
-        ServiceResponse<ElementDescribed> response = processRequest(timeout, new ServiceRequestCallback()
+        ServiceResponse<ElementsDescribed> response = processRequest(timeout, new ServiceRequestCallback()
         {
             @Override
             public String getRequestId()
@@ -116,11 +116,11 @@ public class IdentityServiceClient extends AbstractServiceClient
             @Override
             public void executeRequest(String requestId) throws Exception
             {
-                producer.publishDescribeElement(element);
+                producer.publishDescribeElements(element);
             }
         });
 
-        return processResponse(response, ElementDescribed.class);
+        return processResponse(response, ElementsDescribed.class);
     }
 
     private String replyTo(Class request, Class reply)

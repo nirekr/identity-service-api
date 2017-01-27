@@ -5,7 +5,7 @@
 
 package com.dell.cpsd.identity.service.api.client.amqp.adapters;
 
-import com.dell.cpsd.identity.service.api.ElementIdentified;
+import com.dell.cpsd.identity.service.api.ElementsIdentified;
 import com.dell.cpsd.service.common.client.callback.IServiceCallback;
 import com.dell.cpsd.service.common.client.callback.ServiceResponse;
 import com.dell.cpsd.service.common.client.rpc.ServiceCallbackAdapter;
@@ -19,36 +19,36 @@ import com.dell.cpsd.service.common.client.rpc.ServiceCallbackRegistry;
  *
  * @since SINCE-TBD
  */
-public class ElementIdentifiedMessageAdapter implements ServiceCallbackAdapter<ElementIdentified, ServiceResponse<ElementIdentified>>
+public class ElementsIdentifiedMessageAdapter implements ServiceCallbackAdapter<ElementsIdentified, ServiceResponse<ElementsIdentified>>
 {
     private ServiceCallbackRegistry serviceCallbackRegistry;
 
-    public ElementIdentifiedMessageAdapter(ServiceCallbackRegistry serviceCallbackRegistry)
+    public ElementsIdentifiedMessageAdapter(ServiceCallbackRegistry serviceCallbackRegistry)
     {
         this.serviceCallbackRegistry = serviceCallbackRegistry;
     }
 
     @Override
-    public ServiceResponse<ElementIdentified> transform(ElementIdentified elementIdentified)
+    public ServiceResponse<ElementsIdentified> transform(ElementsIdentified elementIdentified)
     {
         return new ServiceResponse<>(elementIdentified.getCorrelationId(), elementIdentified, null);
     }
 
     @Override
-    public void consume(IServiceCallback iServiceCallback, ServiceResponse<ElementIdentified> elementIdentifiedServiceResponse)
+    public void consume(IServiceCallback iServiceCallback, ServiceResponse<ElementsIdentified> elementIdentifiedServiceResponse)
     {
         iServiceCallback.handleServiceResponse(elementIdentifiedServiceResponse);
     }
 
     @Override
-    public IServiceCallback take(ElementIdentified elementIdentified)
+    public IServiceCallback take(ElementsIdentified elementIdentified)
     {
         return serviceCallbackRegistry.removeServiceCallback(elementIdentified.getCorrelationId());
     }
 
     @Override
-    public Class<ElementIdentified> getSourceClass()
+    public Class<ElementsIdentified> getSourceClass()
     {
-        return ElementIdentified.class;
+        return ElementsIdentified.class;
     }
 }

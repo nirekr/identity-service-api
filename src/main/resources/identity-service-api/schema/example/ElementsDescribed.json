@@ -1,0 +1,33 @@
+{
+  "timestamp": "2017-01-27T14:16:21Z",
+  "correlationId": "5d7f6d34-4271-4593-9bad-1b95589e5189",
+  "elementDescriptions": [
+    {
+      "elementUuid": "fafcdcf4-ae37-4456-94f5-609bad2026ef",
+      "elementType": "SWITCH",
+      "classification": "DEVICE",
+      "businessKeys": [
+        {
+          "businessKeyType": "ABSOLUTE",
+          "key": "ELEMENT_UUID",
+          "value": "fafcdcf4-ae37-4456-94f5-609bad2026ef"
+        },
+        {
+          "businessKeyType": "CONTEXTUAL",
+          "key": "IP_ADDRESS",
+          "value": "10.1.139.1"
+        },
+        {
+          "businessKeyType": "CONTEXTUAL",
+          "key": "IDENTIFIER",
+          "value": "Fabric [VPC domain:10]"
+        },
+        {
+          "businessKeyType": "CONTEXTUAL",
+          "key": "SERIAL_NUMBER",
+          "value": "FOC1816R424"
+        }
+      ]
+    }
+  ]
+}

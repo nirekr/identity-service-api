@@ -5,7 +5,7 @@
 
 package com.dell.cpsd.identity.service.api.client.amqp.adapters;
 
-import com.dell.cpsd.identity.service.api.ElementDescribed;
+import com.dell.cpsd.identity.service.api.ElementsDescribed;
 import com.dell.cpsd.service.common.client.callback.IServiceCallback;
 import com.dell.cpsd.service.common.client.callback.ServiceResponse;
 import com.dell.cpsd.service.common.client.rpc.ServiceCallbackAdapter;
@@ -19,36 +19,36 @@ import com.dell.cpsd.service.common.client.rpc.ServiceCallbackRegistry;
  *
  * @since SINCE-TBD
  */
-public class ElementDescribedMessageAdapter implements ServiceCallbackAdapter<ElementDescribed, ServiceResponse<ElementDescribed>>
+public class ElementsDescribedMessageAdapter implements ServiceCallbackAdapter<ElementsDescribed, ServiceResponse<ElementsDescribed>>
 {
     private ServiceCallbackRegistry serviceCallbackRegistry;
 
-    public ElementDescribedMessageAdapter(ServiceCallbackRegistry serviceCallbackRegistry)
+    public ElementsDescribedMessageAdapter(ServiceCallbackRegistry serviceCallbackRegistry)
     {
         this.serviceCallbackRegistry = serviceCallbackRegistry;
     }
 
     @Override
-    public ServiceResponse<ElementDescribed> transform(ElementDescribed message)
+    public ServiceResponse<ElementsDescribed> transform(ElementsDescribed message)
     {
         return new ServiceResponse<>(message.getCorrelationId(), message, null);
     }
 
     @Override
-    public void consume(IServiceCallback callback, ServiceResponse<ElementDescribed> destination)
+    public void consume(IServiceCallback callback, ServiceResponse<ElementsDescribed> destination)
     {
         callback.handleServiceResponse(destination);
     }
 
     @Override
-    public IServiceCallback take(ElementDescribed source)
+    public IServiceCallback take(ElementsDescribed source)
     {
         return serviceCallbackRegistry.removeServiceCallback(source.getCorrelationId());
     }
 
     @Override
-    public Class<ElementDescribed> getSourceClass()
+    public Class<ElementsDescribed> getSourceClass()
     {
-        return ElementDescribed.class;
+        return ElementsDescribed.class;
     }
 }

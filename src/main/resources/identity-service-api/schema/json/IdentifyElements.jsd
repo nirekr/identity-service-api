@@ -26,13 +26,17 @@
       "title": "Reply-to identifier.",
       "description": "The reply to queue binding on the response exchange"
     },
-    "identity": {
-      "$ref": "Identity.jsd"
+    "elementIdentities": {
+      "type": "array",
+      "items": {
+        "$ref": "ElementIdentity.jsd"
+      }
     }
   },
   "required": [
     "timestamp",
     "correlationId",
+    "reply-to",
     "identity"
   ]
 }

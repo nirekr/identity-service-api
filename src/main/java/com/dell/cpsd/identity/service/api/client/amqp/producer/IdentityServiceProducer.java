@@ -5,9 +5,8 @@
 
 package com.dell.cpsd.identity.service.api.client.amqp.producer;
 
-import com.dell.cpsd.common.rabbitmq.context.RabbitContextAware;
-import com.dell.cpsd.identity.service.api.DescribeElement;
-import com.dell.cpsd.identity.service.api.IdentifyElement;
+import com.dell.cpsd.identity.service.api.DescribeElements;
+import com.dell.cpsd.identity.service.api.IdentifyElements;
 
 /**
  * <p>
@@ -19,7 +18,7 @@ import com.dell.cpsd.identity.service.api.IdentifyElement;
  */
 public interface IdentityServiceProducer
 {
-    void publishIdentifyElement(IdentifyElement identity);
+    void publishIdentifyElements(IdentifyElements identity);
 
-    void publishDescribeElement(DescribeElement identity);
+    void publishDescribeElements(DescribeElements identity);
 }

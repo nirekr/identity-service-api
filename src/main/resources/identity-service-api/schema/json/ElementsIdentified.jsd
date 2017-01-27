@@ -2,11 +2,11 @@
   "$schema": "http://json-schema.org/draft-04/schema#",
   "type": "object",
   "_meta": {
-    "message": "dell.cpsd.core.identity.describe.element",
+    "message": "dell.cpsd.core.identity.element.identified",
     "version": "1.0",
-    "exchange": "exchange.dell.cpsd.eids.identity.request",
-    "routingKey": "dell.cpsd.eids.identity.request",
-    "stereotype": "REQUEST"
+    "exchange": "exchange.dell.cpsd.eids.identity.response",
+    "routingKey": "dell.cpsd.eids.identity.response",
+    "stereotype": "REPLY"
   },
   "properties": {
     "timestamp": {
@@ -20,19 +20,16 @@
       "title": "Correlation identifier",
       "description": "The correlation identifier of the message."
     },
-    "reply-to": {
-      "type": "string",
-      "javaName": "replyTo",
-      "title": "Reply-to identifier.",
-      "description": "The reply to queue binding on the response exchange"
-    },
-    "elementUuid": {
-      "type": "string"
+    "elementIdentifications": {
+      "type": "array",
+      "items": {
+        "$ref": "ElementIdentification.jsd"
+      }
     }
   },
   "required": [
     "timestamp",
     "correlationId",
-    "elementUuid"
+    "elementIdentification"
   ]
 }

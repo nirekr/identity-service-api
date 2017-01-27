@@ -11,14 +11,16 @@ import com.dell.cpsd.common.rabbitmq.context.ApplicationConfiguration;
 import com.dell.cpsd.common.rabbitmq.context.ApplicationConfigurationFactory;
 import com.dell.cpsd.identity.service.api.BusinessKey;
 import com.dell.cpsd.identity.service.api.Classification;
-import com.dell.cpsd.identity.service.api.ElementDescribed;
-import com.dell.cpsd.identity.service.api.ElementIdentified;
+import com.dell.cpsd.identity.service.api.ElementIdentity;
+import com.dell.cpsd.identity.service.api.ElementsDescribed;
+import com.dell.cpsd.identity.service.api.ElementsIdentified;
 import com.dell.cpsd.identity.service.api.Identity;
 import org.junit.Assert;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
 import java.util.Arrays;
+import java.util.UUID;
 
 /**
  * <p>
@@ -47,8 +49,8 @@ public class IdentityServiceClientFactoryIntegrationTest
     @Test
     public void testDescribe() throws Exception
     {
-        DescribeElementCriteria criteria = new DescribeElementCriteria("78cfeff9-008a-48f2-b2cf-fdc2153e4e9e");
-        ElementDescribed elementDescribed = client.describeElement(criteria, 10000l);
+        DescribeElementsCriteria criteria = new DescribeElementsCriteria(Arrays.asList("fafcdcf4-ae37-4456-94f5-609bad2026ef"));
+        ElementsDescribed elementDescribed = client.describeElements(criteria, 10000l);
 
         Assert.assertNotNull(elementDescribed);
     }
@@ -59,8 +61,9 @@ public class IdentityServiceClientFactoryIntegrationTest
         Identity identity = new Identity("storagearray", Classification.DEVICE, null,
                 Arrays.asList(new BusinessKey(BusinessKey.BusinessKeyType.CONTEXTUAL, "alias", "1")));
 
-        IdentifyElementCriteria criteria = new IdentifyElementCriteria(identity);
-        ElementIdentified elementIdentified = client.identifyElement(criteria, 10000l);
+        IdentifyElementsCriteria criteria = new IdentifyElementsCriteria(
+                Arrays.asList(new ElementIdentity(UUID.randomUUID().toString(), identity)));
+        ElementsIdentified elementIdentified = client.identifyElements(criteria, 10000l);
 
         Assert.assertNotNull(elementIdentified);
     }

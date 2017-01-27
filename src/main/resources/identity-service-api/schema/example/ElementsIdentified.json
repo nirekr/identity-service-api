@@ -1,0 +1,22 @@
+{
+  "timestamp": "2017-01-27T14:16:21Z",
+  "correlationId": "c92b8be9-a892-4a76-a8d3-933c85ead7bb",
+  "elementIdentifications": [
+    {
+      "correlationUuid": "fb4e839d-aba1-409e-82d7-7e4632d6b647",
+      "elementUuid": "c2e4a63b-8367-462b-887d-bfad918c2d3d"
+    },
+    {
+      "correlationUuid": "d4964090-76b8-4d4a-8068-4cd8ff258462",
+      "elementUuid": "fafcdcf4-ae37-4456-94f5-609bad2026ef"
+    },
+    {
+      "correlationUuid": "93eb24fd-b8b0-49fa-8911-17f1cba72034",
+      "elementUuid": "2d2b86e5-b23e-4ebd-936c-9bd22063d471"
+    },
+    {
+      "correlationUuid": "0c180853-bff6-4813-9099-3f80816ce450",
+      "elementUuid": "e801baa1-ca92-4d75-ba5a-b431f6d1ff64"
+    }
+  ]
+}

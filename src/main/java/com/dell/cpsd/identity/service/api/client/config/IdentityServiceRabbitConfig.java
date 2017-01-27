@@ -12,10 +12,10 @@ import com.dell.cpsd.common.rabbitmq.context.RabbitContext;
 import com.dell.cpsd.common.rabbitmq.context.RabbitContextListener;
 import com.dell.cpsd.common.rabbitmq.context.builder.RabbitContextBuilder;
 import com.dell.cpsd.common.rabbitmq.template.OpinionatedRabbitTemplate;
-import com.dell.cpsd.identity.service.api.DescribeElement;
-import com.dell.cpsd.identity.service.api.ElementDescribed;
-import com.dell.cpsd.identity.service.api.ElementIdentified;
-import com.dell.cpsd.identity.service.api.IdentifyElement;
+import com.dell.cpsd.identity.service.api.DescribeElements;
+import com.dell.cpsd.identity.service.api.ElementsDescribed;
+import com.dell.cpsd.identity.service.api.ElementsIdentified;
+import com.dell.cpsd.identity.service.api.IdentifyElements;
 import com.dell.cpsd.identity.service.api.IdentityServiceError;
 import com.dell.cpsd.identity.service.api.client.amqp.producer.AmqpIdentityServiceProducer;
 import com.dell.cpsd.identity.service.api.client.amqp.producer.IdentityServiceProducer;
@@ -54,10 +54,10 @@ public class IdentityServiceRabbitConfig
         ApplicationConfiguration applicationConfiguration = ApplicationConfigurationContext.getCurrent();
         RabbitContextBuilder contextBuilder = new RabbitContextBuilder(rabbitConnectionFactory, applicationConfiguration);
 
-        contextBuilder.requestsAndReplies(IdentifyElement.class, queueName(applicationConfiguration, "dell.cpsd.eids.element.identified"),
-                true, consumer, ElementIdentified.class, IdentityServiceError.class);
-        contextBuilder.requestsAndReplies(DescribeElement.class, queueName(applicationConfiguration, "dell.cpsd.eids.element.described"),
-                true, consumer, ElementDescribed.class, IdentityServiceError.class);
+        contextBuilder.requestsAndReplies(IdentifyElements.class, queueName(applicationConfiguration, "dell.cpsd.eids.element.identified"),
+                true, consumer, ElementsIdentified.class, IdentityServiceError.class);
+        contextBuilder.requestsAndReplies(DescribeElements.class, queueName(applicationConfiguration, "dell.cpsd.eids.element.described"),
+                true, consumer, ElementsDescribed.class, IdentityServiceError.class);
 
         return contextBuilder.build();
     }

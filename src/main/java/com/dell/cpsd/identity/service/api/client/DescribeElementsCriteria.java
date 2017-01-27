@@ -5,7 +5,7 @@
 
 package com.dell.cpsd.identity.service.api.client;
 
-import com.dell.cpsd.identity.service.api.Identity;
+import java.util.List;
 
 /**
  * <p>
@@ -15,17 +15,17 @@ import com.dell.cpsd.identity.service.api.Identity;
  *
  * @since SINCE-TBD
  */
-public class IdentifyElementCriteria
+public class DescribeElementsCriteria
 {
-    private final Identity identity;
+    private final List<String> elementUuids;
 
-    public IdentifyElementCriteria(Identity identity)
+    public DescribeElementsCriteria(List<String> elementUuids)
     {
-        this.identity = identity;
+        this.elementUuids = elementUuids;
     }
 
-    public Identity getIdentity()
+    public List<String> getElementUuid()
     {
-        return identity;
+        return elementUuids;
     }
 }

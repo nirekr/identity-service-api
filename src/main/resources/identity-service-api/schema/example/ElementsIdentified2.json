@@ -1,0 +1,38 @@
+{
+  "timestamp": "2017-01-27T14:16:21Z",
+  "correlationId": "21803835-7129-4174-bbf6-54a2956d8b23",
+  "elementIdentifications": [
+    {
+      "correlationUuid": "1896162a-ef07-4a38-ae46-9edd5ceae32b",
+      "elementUuid": "5f0e91af-bd8b-47f6-98b3-9f3e36d707ce"
+    },
+    {
+      "correlationUuid": "41da460a-d58c-4f30-b40b-d857c056c894",
+      "elementUuid": "2d2b86e5-b23e-4ebd-936c-9bd22063d471"
+    },
+    {
+      "correlationUuid": "4af9941a-37b6-45b6-9a09-fd38a15be274",
+      "elementUuid": "fafcdcf4-ae37-4456-94f5-609bad2026ef"
+    },
+    {
+      "correlationUuid": "fe0a15c1-fa1e-45a3-bb5b-2b5a6cd5bba0",
+      "elementUuid": "5f0e91af-bd8b-47f6-98b3-9f3e36d707ce"
+    },
+    {
+      "correlationUuid": "354b969b-16ff-4efb-8aa1-3e752036fcde",
+      "elementUuid": "f2912a1d-c828-426c-b54c-3473a3af39d4"
+    },
+    {
+      "correlationUuid": "a717140a-9693-4076-be24-0e909029b969",
+      "elementUuid": "25a0cc51-794c-4af9-b540-3f03f93ada3e"
+    },
+    {
+      "correlationUuid": "77a1432e-e502-4740-901f-b77c3d5cce88",
+      "elementUuid": "f2912a1d-c828-426c-b54c-3473a3af39d4"
+    },
+    {
+      "correlationUuid": "f8445b24-01b7-401a-9197-5f19e7fa0a30",
+      "elementUuid": "25a0cc51-794c-4af9-b540-3f03f93ada3e"
+    }
+  ]
+}
