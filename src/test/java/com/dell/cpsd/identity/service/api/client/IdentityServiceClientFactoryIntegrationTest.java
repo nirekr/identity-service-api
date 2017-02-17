@@ -59,7 +59,7 @@ public class IdentityServiceClientFactoryIntegrationTest
     public void testIdentify() throws Exception
     {
         Identity identity = new Identity("storagearray", Classification.DEVICE, null,
-                Arrays.asList(new BusinessKey(BusinessKey.BusinessKeyType.CONTEXTUAL, "alias", "1")));
+                Arrays.asList(new BusinessKey(BusinessKey.BusinessKeyType.CONTEXTUAL, "alias", "1")), 2);
 
         IdentifyElementsCriteria criteria = new IdentifyElementsCriteria(
                 Arrays.asList(new ElementIdentity(UUID.randomUUID().toString(), identity)));
