@@ -74,7 +74,6 @@
                             <targetPackage>com.dell.cpsd.identity.service.api</targetPackage>
                             <outputDirectory>${project.build.directory}/generated-sources/identity-service-api</outputDirectory>
                             <removeOldOutput>true</removeOldOutput>
-                            <useLongIntegers>true</useLongIntegers>
                             <includeConstructors>true</includeConstructors>
                             <serializable>false</serializable>
                             <useCommonsLang3>true</useCommonsLang3>
