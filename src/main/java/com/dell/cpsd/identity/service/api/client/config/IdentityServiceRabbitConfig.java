@@ -23,9 +23,12 @@ import com.dell.cpsd.service.common.client.rpc.DefaultMessageConsumer;
 import com.dell.cpsd.service.common.client.rpc.DelegatingMessageConsumer;
 import org.springframework.amqp.rabbit.connection.ConnectionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Import;
+
+import com.dell.cpsd.common.rabbitmq.config.IRabbitMqPropertiesConfig;
 
 /**
  * <p>
@@ -36,11 +39,16 @@ import org.springframework.context.annotation.Import;
  * @since SINCE-TBD
  */
 @Configuration
-@Import({RabbitMqProductionConfig.class, IdentityServicePropertiesConfig.class})
+@Import({RabbitMqProductionConfig.class})
 public class IdentityServiceRabbitConfig
 {
     @Autowired
+    @Qualifier("rabbitConnectionFactory")
     private ConnectionFactory rabbitConnectionFactory;
+    
+    @Autowired
+    @Qualifier("rabbitPropertiesConfig")
+    private IRabbitMqPropertiesConfig propertiesConfig;
 
     @Autowired
     private DelegatingMessageConsumer consumer;

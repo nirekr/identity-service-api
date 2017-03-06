@@ -5,7 +5,7 @@
 
 package com.dell.cpsd.identity.service.api.client.config;
 
-import com.dell.cpsd.common.rabbitmq.config.RabbitMQPropertiesConfig;
+//import com.dell.cpsd.common.rabbitmq.config.RabbitMQPropertiesConfig;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.annotation.Configuration;
 
@@ -18,7 +18,7 @@ import org.springframework.context.annotation.Configuration;
  * @since SINCE-TBD
  */
 @Configuration
-@Qualifier("rabbitPropertiesConfig")
-public class IdentityServicePropertiesConfig extends RabbitMQPropertiesConfig
+//@Qualifier("rabbitPropertiesConfig")
+public class IdentityServicePropertiesConfig //extends RabbitMQPropertiesConfig
 {
 }
