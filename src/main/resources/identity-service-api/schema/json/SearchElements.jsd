@@ -1,11 +1,12 @@
 {
   "$schema": "http://json-schema.org/draft-04/schema#",
   "type": "object",
-  "description": "The message sent when there is an identity service error.",
   "_meta": {
-    "message": "dell.cpsd.core.identity.service.error",
+    "message": "dell.cpsd.core.identity.search.element",
     "version": "1.0",
-    "stereotype": "ERROR"
+    "exchange": "exchange.dell.cpsd.eids.identity.request",
+    "routingKey": "dell.cpsd.eids.identity.search.element",
+    "stereotype": "REQUEST"
   },
   "properties": {
     "timestamp": {
@@ -19,21 +20,23 @@
       "title": "Correlation identifier",
       "description": "The correlation identifier of the message."
     },
-    "errorCode": {
+    "reply-to": {
       "type": "string",
-      "title": "Error code",
-      "description": "The error code provided by the service."
+      "javaName": "replyTo",
+      "title": "Reply-to identifier.",
+      "description": "The reply to queue binding on the response exchange"
     },
-    "errorMessage": {
-      "type": "string",
-      "title": "Error message",
-      "description": "The error details provided by the service."
+    "elementIdentities": {
+      "type": "array",
+      "items": {
+        "$ref": "ElementIdentity.jsd"
+      }
     }
   },
   "required": [
     "timestamp",
     "correlationId",
-    "errorCode",
-    "errorMessage"
+    "reply-to",
+    "identity"
   ]
 }

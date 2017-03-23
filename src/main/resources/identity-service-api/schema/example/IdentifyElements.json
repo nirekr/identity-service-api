@@ -32,7 +32,8 @@
             "key": "IDENTIFIER",
             "value": "SystemNetwork"
           }
-        ]
+        ],
+        "contextualKeyAccuracy": 2
       }
     },
     {
@@ -59,7 +60,8 @@
                     "key": "SERIAL_NUMBER",
                     "value": "RTP-VXB340-DQAV34YX"
                   }
-                ]
+                ],
+                "contextualKeyAccuracy": 2
               }
             ],
             "businessKeys": [
@@ -68,7 +70,8 @@
                 "key": "IDENTIFIER",
                 "value": "SystemNetwork"
               }
-            ]
+            ],
+            "contextualKeyAccuracy": 2
           }
         ],
         "businessKeys": [
@@ -77,7 +80,8 @@
             "key": "COMPONENT_TAG",
             "value": "MGMT-N3A"
           }
-        ]
+        ],
+        "contextualKeyAccuracy": 2
       }
     },
     {
@@ -104,7 +108,8 @@
                     "key": "SERIAL_NUMBER",
                     "value": "RTP-VXB340-DQAV34YX"
                   }
-                ]
+                ],
+                "contextualKeyAccuracy": 2
               }
             ],
             "businessKeys": [
@@ -113,7 +118,8 @@
                 "key": "IDENTIFIER",
                 "value": "SystemNetwork"
               }
-            ]
+            ],
+            "contextualKeyAccuracy": 2
           }
         ],
         "businessKeys": [
@@ -122,7 +128,8 @@
             "key": "COMPONENT_TAG",
             "value": "MGMT-N3B"
           }
-        ]
+        ],
+        "contextualKeyAccuracy": 2
       }
     },
     {
@@ -141,7 +148,8 @@
             "key": "SERIAL_NUMBER",
             "value": "RTP-VXB340-DQAV34YX"
           }
-        ]
+        ],
+        "contextualKeyAccuracy": 2
       }
     }
   ]

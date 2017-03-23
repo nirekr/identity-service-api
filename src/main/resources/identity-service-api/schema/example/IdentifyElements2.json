@@ -38,7 +38,8 @@
                     "key": "SERIAL_NUMBER",
                     "value": "FOC1816R424"
                   }
-                ]
+                ],
+                "contextualKeyAccuracy": 2
               }
             ],
             "businessKeys": [
@@ -61,7 +62,8 @@
                 "key": "SERIAL_NUMBER",
                 "value": "FOC1816R424"
               }
-            ]
+            ],
+            "contextualKeyAccuracy": 2
           }
         ],
         "businessKeys": [
@@ -83,7 +85,8 @@
             "businessKeyType": "CONTEXTUAL",
             "key": "SERIAL_NUMBER"
           }
-        ]
+        ],
+        "contextualKeyAccuracy": 2
       }
     },
     {
@@ -113,7 +116,8 @@
             "key": "SERIAL_NUMBER",
             "value": "FOC1816R40B"
           }
-        ]
+        ],
+        "contextualKeyAccuracy": 2
       }
     },
     {
@@ -143,7 +147,8 @@
             "key": "SERIAL_NUMBER",
             "value": "FOC1816R424"
           }
-        ]
+        ],
+        "contextualKeyAccuracy": 2
       }
     },
     {
@@ -181,7 +186,8 @@
                     "key": "SERIAL_NUMBER",
                     "value": "FOC1816R40B"
                   }
-                ]
+                ],
+                "contextualKeyAccuracy": 2
               }
             ],
             "businessKeys": [
@@ -204,7 +210,8 @@
                 "key": "SERIAL_NUMBER",
                 "value": "FOC1816R40B"
               }
-            ]
+            ],
+            "contextualKeyAccuracy": 2
           }
         ],
         "businessKeys": [
@@ -226,7 +233,8 @@
             "businessKeyType": "CONTEXTUAL",
             "key": "SERIAL_NUMBER"
           }
-        ]
+        ],
+        "contextualKeyAccuracy": 2
       }
     },
     {
@@ -268,7 +276,8 @@
                         "key": "SERIAL_NUMBER",
                         "value": "FOC1816R424"
                       }
-                    ]
+                    ],
+                    "contextualKeyAccuracy": 2
                   }
                 ],
                 "businessKeys": [
@@ -291,7 +300,8 @@
                     "key": "SERIAL_NUMBER",
                     "value": "FOC1816R424"
                   }
-                ]
+                ],
+                "contextualKeyAccuracy": 2
               }
             ],
             "businessKeys": [
@@ -313,7 +323,8 @@
                 "businessKeyType": "CONTEXTUAL",
                 "key": "SERIAL_NUMBER"
               }
-            ]
+            ],
+            "contextualKeyAccuracy": 2
           }
         ],
         "businessKeys": [
@@ -336,7 +347,8 @@
             "key": "SERIAL_NUMBER",
             "value": "FOC18167DM2"
           }
-        ]
+        ],
+        "contextualKeyAccuracy": 2
       }
     },
     {
@@ -370,7 +382,8 @@
                 "key": "SERIAL_NUMBER",
                 "value": "FOC1816R40B"
               }
-            ]
+            ],
+            "contextualKeyAccuracy": 2
           }
         ],
         "businessKeys": [
@@ -393,7 +406,8 @@
             "key": "SERIAL_NUMBER",
             "value": "FOC1816R40B"
           }
-        ]
+        ],
+        "contextualKeyAccuracy": 2
       }
     },
     {
@@ -435,7 +449,8 @@
                         "key": "SERIAL_NUMBER",
                         "value": "FOC1816R40B"
                       }
-                    ]
+                    ],
+                    "contextualKeyAccuracy": 2
                   }
                 ],
                 "businessKeys": [
@@ -458,7 +473,8 @@
                     "key": "SERIAL_NUMBER",
                     "value": "FOC1816R40B"
                   }
-                ]
+                ],
+                "contextualKeyAccuracy": 2
               }
             ],
             "businessKeys": [
@@ -480,7 +496,8 @@
                 "businessKeyType": "CONTEXTUAL",
                 "key": "SERIAL_NUMBER"
               }
-            ]
+            ],
+            "contextualKeyAccuracy": 2
           }
         ],
         "businessKeys": [
@@ -503,7 +520,8 @@
             "key": "SERIAL_NUMBER",
             "value": "FOC18167DDB"
           }
-        ]
+        ],
+        "contextualKeyAccuracy": 2
       }
     },
     {
@@ -537,7 +555,8 @@
                 "key": "SERIAL_NUMBER",
                 "value": "FOC1816R424"
               }
-            ]
+            ],
+            "contextualKeyAccuracy": 2
           }
         ],
         "businessKeys": [
@@ -560,7 +579,8 @@
             "key": "SERIAL_NUMBER",
             "value": "FOC1816R424"
           }
-        ]
+        ],
+        "contextualKeyAccuracy": 2
       }
     }
   ]
