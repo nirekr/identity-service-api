@@ -49,7 +49,7 @@ public class IdentityServiceClientFactoryIntegrationTest
     @Test
     public void testDescribe() throws Exception
     {
-        DescribeElementsCriteria criteria = new DescribeElementsCriteria(Arrays.asList("fafcdcf4-ae37-4456-94f5-609bad2026ef"));
+        DescribeElementsCriteria criteria = new DescribeElementsCriteria(Arrays.asList("4864d576-25e6-48dc-9ab2-f275f30ce181"));
         ElementsDescribed elementDescribed = client.describeElements(criteria, 10000l);
 
         Assert.assertNotNull(elementDescribed);
