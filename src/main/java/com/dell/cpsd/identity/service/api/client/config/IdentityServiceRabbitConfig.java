@@ -5,11 +5,14 @@
 
 package com.dell.cpsd.identity.service.api.client.config;
 
+import com.dell.cpsd.common.rabbitmq.config.IRabbitMqPropertiesConfig;
 import com.dell.cpsd.common.rabbitmq.config.RabbitMqProductionConfig;
 import com.dell.cpsd.common.rabbitmq.context.ApplicationConfiguration;
 import com.dell.cpsd.common.rabbitmq.context.ApplicationConfigurationContext;
 import com.dell.cpsd.common.rabbitmq.context.RabbitContext;
 import com.dell.cpsd.common.rabbitmq.context.RabbitContextListener;
+import com.dell.cpsd.common.rabbitmq.context.builder.MessageMetaData;
+import com.dell.cpsd.common.rabbitmq.context.builder.MessageMetaDataReader;
 import com.dell.cpsd.common.rabbitmq.context.builder.RabbitContextBuilder;
 import com.dell.cpsd.common.rabbitmq.template.OpinionatedRabbitTemplate;
 import com.dell.cpsd.identity.service.api.DescribeElements;
@@ -27,11 +30,9 @@ import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Import;
-import org.springframework.core.io.ClassPathResource;
 
 import java.io.IOException;
-
-import com.dell.cpsd.common.rabbitmq.config.IRabbitMqPropertiesConfig;
+import java.util.Collection;
 
 /**
  * <p>
@@ -64,9 +65,11 @@ public class IdentityServiceRabbitConfig
     {
         ApplicationConfiguration applicationConfiguration = ApplicationConfigurationContext.getCurrent();
 
-        ClassPathResource resource = new ClassPathResource("META-INF/spring/identity-service-api/amqp.json");
-        RabbitContextBuilder contextBuilder = new RabbitContextBuilder(rabbitConnectionFactory, applicationConfiguration,
-                resource.getFile());
+        MessageMetaDataReader reader = new MessageMetaDataReader();
+        Collection<MessageMetaData> metaDatas = reader.read(getClass().getClassLoader().getResourceAsStream(
+                "META-INF/spring/identity-service-api/amqp.json"));
+
+        RabbitContextBuilder contextBuilder = new RabbitContextBuilder(rabbitConnectionFactory, applicationConfiguration, metaDatas);
 
         contextBuilder.requestsAndReplies(IdentifyElements.class, queueName(applicationConfiguration, "dell.cpsd.eids.element.identified"),
                 true, consumer, ElementsIdentified.class, IdentityServiceError.class);
