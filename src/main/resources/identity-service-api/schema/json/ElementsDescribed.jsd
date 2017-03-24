@@ -4,8 +4,6 @@
   "_meta": {
     "message": "dell.cpsd.core.identity.element.described",
     "version": "1.0",
-    "exchange": "exchange.dell.cpsd.eids.identity.response",
-    "routingKey": "dell.cpsd.eids.identity.response",
     "stereotype": "REPLY"
   },
   "properties": {

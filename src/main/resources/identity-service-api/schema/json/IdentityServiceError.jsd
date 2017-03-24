@@ -5,8 +5,6 @@
   "_meta": {
     "message": "dell.cpsd.core.identity.service.error",
     "version": "1.0",
-    "exchange": "exchange.dell.cpsd.eids.identity.response",
-    "routingKey": "dell.cpsd.eids.identity.error",
     "stereotype": "ERROR"
   },
   "properties": {

@@ -1,0 +1,29 @@
+{
+  "messages": [
+    {
+      "message": "dell.cpsd.core.identity.describe.element",
+      "exchange": "exchange.dell.cpsd.eids.identity.request",
+      "routingKey": "dell.cpsd.eids.identity.request"
+    },
+    {
+      "message": "dell.cpsd.core.identity.element.described",
+      "exchange": "exchange.dell.cpsd.eids.identity.response",
+      "routingKey": "{replyTo}"
+    },
+    {
+      "message": "dell.cpsd.core.identity.identify.element",
+      "exchange": "exchange.dell.cpsd.eids.identity.request",
+      "routingKey": "dell.cpsd.eids.identity.request"
+    },
+    {
+      "message": "dell.cpsd.core.identity.element.identified",
+      "exchange": "exchange.dell.cpsd.eids.identity.response",
+      "routingKey": "{replyTo}"
+    },
+    {
+      "message": "dell.cpsd.core.identity.service.error",
+      "exchange": "exchange.dell.cpsd.eids.identity.response",
+      "routingKey": "{replyTo}"
+    }
+  ]
+}

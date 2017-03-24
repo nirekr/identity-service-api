@@ -27,6 +27,9 @@ import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Import;
+import org.springframework.core.io.ClassPathResource;
+
+import java.io.IOException;
 
 import com.dell.cpsd.common.rabbitmq.config.IRabbitMqPropertiesConfig;
 
@@ -57,10 +60,13 @@ public class IdentityServiceRabbitConfig
     private OpinionatedRabbitTemplate rabbitTemplate;
 
     @Bean
-    public RabbitContext rabbitContext()
+    public RabbitContext rabbitContext() throws IOException
     {
         ApplicationConfiguration applicationConfiguration = ApplicationConfigurationContext.getCurrent();
-        RabbitContextBuilder contextBuilder = new RabbitContextBuilder(rabbitConnectionFactory, applicationConfiguration);
+
+        ClassPathResource resource = new ClassPathResource("META-INF/spring/identity-service-api/amqp.json");
+        RabbitContextBuilder contextBuilder = new RabbitContextBuilder(rabbitConnectionFactory, applicationConfiguration,
+                resource.getFile());
 
         contextBuilder.requestsAndReplies(IdentifyElements.class, queueName(applicationConfiguration, "dell.cpsd.eids.element.identified"),
                 true, consumer, ElementsIdentified.class, IdentityServiceError.class);

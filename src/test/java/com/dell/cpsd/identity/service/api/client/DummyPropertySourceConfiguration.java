@@ -5,6 +5,8 @@
 
 package com.dell.cpsd.identity.service.api.client;
 
+import com.dell.cpsd.common.rabbitmq.config.RabbitMQPropertiesConfig;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.PropertySource;
 import org.springframework.context.annotation.PropertySources;
@@ -21,6 +23,7 @@ import org.springframework.context.annotation.PropertySources;
 @PropertySources({
         @PropertySource(value = "file:/opt/dell/rcm-fitness/conf/rabbitmq-config.properties", ignoreResourceNotFound = true)
 })
-public class DummyPropertySourceConfiguration
+@Qualifier("rabbitPropertiesConfig")
+public class DummyPropertySourceConfiguration extends RabbitMQPropertiesConfig
 {
 }
