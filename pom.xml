@@ -63,7 +63,7 @@
                             <goal>generate</goal>
                         </goals>
                         <configuration>
-                            <sourceDirectory>src/main/resources/identity-service-api/schema/json
+                            <sourceDirectory>${project.basedir}/src/main/resources/identity-service-api/schema/json
                             </sourceDirectory>
                             <targetPackage>com.dell.cpsd.identity.service.api</targetPackage>
                             <outputDirectory>${project.build.directory}/generated-sources/identity-service-api</outputDirectory>
