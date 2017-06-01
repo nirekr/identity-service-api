@@ -58,7 +58,12 @@ pipeline {
             steps {
                 doNexbScanning()
             }
-        }        
+        }
+        stage('PasswordScan') {
+		    steps {
+			    doPwScan()
+		    }
+	    }
     }
     post {
         always{
