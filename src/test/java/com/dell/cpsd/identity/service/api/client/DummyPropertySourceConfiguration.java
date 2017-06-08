@@ -1,6 +1,6 @@
 /**
- * &copy; 2017 VCE Company, LLC. All rights reserved.
- * VCE Confidential/Proprietary Information
+ * Copyright © 2017 Dell Inc. or its subsidiaries.  All Rights Reserved.
+ * Dell EMC Confidential/Proprietary Information
  */
 
 package com.dell.cpsd.identity.service.api.client;
@@ -13,8 +13,7 @@ import org.springframework.context.annotation.PropertySources;
 
 /**
  * <p>
- * &copy; 2017 VCE Company, LLC. All rights reserved.
- * VCE Confidential/Proprietary Information
+ * Copyright © 2017 Dell Inc. or its subsidiaries.  All Rights Reserved.
  * </p>
  *
  * @since SINCE-TBD
