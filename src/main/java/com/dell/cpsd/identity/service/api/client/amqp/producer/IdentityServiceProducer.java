@@ -1,6 +1,6 @@
 /**
- * &copy; 2017 VCE Company, LLC. All rights reserved.
- * VCE Confidential/Proprietary Information
+ * Copyright © 2017 Dell Inc. or its subsidiaries.  All Rights Reserved.
+ * Dell EMC Confidential/Proprietary Information
  */
 
 package com.dell.cpsd.identity.service.api.client.amqp.producer;
@@ -10,8 +10,7 @@ import com.dell.cpsd.identity.service.api.IdentifyElements;
 
 /**
  * <p>
- * &copy; 2017 VCE Company, LLC. All rights reserved.
- * VCE Confidential/Proprietary Information
+ * Copyright © 2017 Dell Inc. or its subsidiaries.  All Rights Reserved.
  * </p>
  *
  * @since SINCE-TBD

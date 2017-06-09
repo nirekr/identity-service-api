@@ -1,6 +1,6 @@
 /**
- * &copy; 2016 VCE Company, LLC. All rights reserved.
- * VCE Confidential/Proprietary Information
+ * Copyright © 2017 Dell Inc. or its subsidiaries.  All Rights Reserved.
+ * Dell EMC Confidential/Proprietary Information
  */
 
 package com.dell.cpsd.identity.service.api.client;
@@ -25,8 +25,7 @@ import com.dell.cpsd.service.common.client.rpc.ServiceRequestCallback;
 
 /**
  * <p>
- * &copy; 2016 VCE Company, LLC. All rights reserved.
- * VCE Confidential/Proprietary Information
+ * Copyright © 2017 Dell Inc. or its subsidiaries.  All Rights Reserved.
  * </p>
  *
  * @since SINCE-TBD
