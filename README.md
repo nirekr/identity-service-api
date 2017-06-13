@@ -1,9 +1,8 @@
 # identity-service-api
 ## Description
-This repository creates the UUID for an element that has been added to System Definition.
+This repository creates a UUID for any managed element.
 ## Documentation
 You can find additional documentation for Project Symphony at [dellemc-symphony.readthedocs.io][documentation].
-## API overview 
 ## Before you begin
 Verify that the following tools are installed:
  
