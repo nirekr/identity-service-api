@@ -6,7 +6,7 @@
 package com.dell.cpsd.identity.service.api.client.config;
 
 //import com.dell.cpsd.common.rabbitmq.config.RabbitMQPropertiesConfig;
-import org.springframework.beans.factory.annotation.Qualifier;
+//import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.annotation.Configuration;
 
 /**
