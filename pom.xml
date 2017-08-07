@@ -36,6 +36,13 @@
             <scope>provided</scope>
         </dependency>
 
+        <dependency>
+            <groupId>com.dell.cpsd.common.messaging</groupId>
+            <artifactId>common-messaging-parent</artifactId>
+            <version>1.4-SNAPSHOT</version>
+            <type>pom</type>
+        </dependency>
+
         <!-- Test Dependencies -->
         <dependency>
             <groupId>junit</groupId>
