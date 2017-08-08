@@ -36,7 +36,7 @@ pipeline {
 	}
         stage('Compile') {
             steps {
-                sh "mvn clean install -Dmaven.repo.local=.repo -DskipTests=true -DskipITs=true"
+                sh "mvn clean install -Dmaven.repo.local=.repo -DskipITs=true"
             }
         }
         stage('Unit Testing') {
