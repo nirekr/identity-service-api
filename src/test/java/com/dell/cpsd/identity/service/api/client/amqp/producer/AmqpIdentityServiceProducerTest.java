@@ -30,26 +30,29 @@ public class AmqpIdentityServiceProducerTest
 
     AmqpIdentityServiceProducer amqpIdentityServiceProducer;
     OpinionatedRabbitTemplate   template;
+    IdentifyElements            identityElements;
+    DescribeElements            describeElements;
 
     @Before
     public void setUp()
     {
         template = Mockito.mock(OpinionatedRabbitTemplate.class);
         amqpIdentityServiceProducer = new AmqpIdentityServiceProducer(template);
-
+        identityElements = Mockito.mock(IdentifyElements.class);
+        describeElements = Mockito.mock(DescribeElements.class);
     }
 
     @Test
     public void publishIdentifyElementsTest()
     {
-        amqpIdentityServiceProducer.publishIdentifyElements(any(IdentifyElements.class));
+        amqpIdentityServiceProducer.publishIdentifyElements(identityElements);
         verify(template).send(any(IdentifyElements.class));
     }
 
     @Test
     public void publishDescribeElementsTest()
     {
-        amqpIdentityServiceProducer.publishDescribeElements(any(DescribeElements.class));
+        amqpIdentityServiceProducer.publishDescribeElements(describeElements);
         verify(template).send(any(DescribeElements.class));
     }
 
