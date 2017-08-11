@@ -31,15 +31,15 @@ import java.util.UUID;
  */
 public class IdentityServiceClientFactoryIntegrationTest
 {
-    private static ILogger LOGGER = new LoggingManager().getLogger(IdentityServiceClientFactoryIntegrationTest.class);
+    private static ILogger               LOGGER = new LoggingManager().getLogger(IdentityServiceClientFactoryIntegrationTest.class);
 
     private static IdentityServiceClient client;
 
     @BeforeClass
     public static void setup()
     {
-        ApplicationConfiguration applicationConfiguration =
-                ApplicationConfigurationFactory.getInstance().createApplicationConfiguration("appX");
+        ApplicationConfiguration applicationConfiguration = ApplicationConfigurationFactory.getInstance().createApplicationConfiguration(
+                "appX");
 
         IdentityServiceClientFactory factory = new IdentityServiceClientFactory(LOGGER);
         client = factory.createClient(applicationConfiguration, DummyPropertySourceConfiguration.class);
@@ -57,11 +57,11 @@ public class IdentityServiceClientFactoryIntegrationTest
     @Test
     public void testIdentify() throws Exception
     {
-        Identity identity = new Identity("storagearray", Classification.DEVICE, null,
-                Arrays.asList(new BusinessKey(BusinessKey.BusinessKeyType.CONTEXTUAL, "alias", "1")), 2);
+        Identity identity = new Identity("storagearray", Classification.DEVICE, null, Arrays.asList(new BusinessKey(
+                BusinessKey.BusinessKeyType.CONTEXTUAL, "alias", "1")), 2);
 
-        IdentifyElementsCriteria criteria = new IdentifyElementsCriteria(
-                Arrays.asList(new ElementIdentity(UUID.randomUUID().toString(), identity)));
+        IdentifyElementsCriteria criteria = new IdentifyElementsCriteria(Arrays.asList(new ElementIdentity(UUID.randomUUID().toString(),
+                identity)));
         ElementsIdentified elementIdentified = client.identifyElements(criteria, 10000l);
 
         Assert.assertNotNull(elementIdentified);
