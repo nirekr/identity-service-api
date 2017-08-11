@@ -18,6 +18,6 @@ import org.springframework.context.annotation.Configuration;
  */
 @Configuration
 //@Qualifier("rabbitPropertiesConfig")
-public class IdentityServicePropertiesConfig //extends RabbitMQPropertiesConfig
+public class IdentityServicePropertiesConfig // extends RabbitMQPropertiesConfig
 {
 }

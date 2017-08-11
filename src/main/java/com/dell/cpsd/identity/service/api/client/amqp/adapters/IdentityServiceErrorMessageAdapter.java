@@ -18,7 +18,8 @@ import com.dell.cpsd.service.common.client.rpc.ServiceCallbackRegistry;
  *
  * @since SINCE-TBD
  */
-public class IdentityServiceErrorMessageAdapter implements ServiceCallbackAdapter<IdentityServiceError, ServiceResponse<IdentityServiceError>>
+public class IdentityServiceErrorMessageAdapter implements
+        ServiceCallbackAdapter<IdentityServiceError, ServiceResponse<IdentityServiceError>>
 {
     private ServiceCallbackRegistry serviceCallbackRegistry;
 

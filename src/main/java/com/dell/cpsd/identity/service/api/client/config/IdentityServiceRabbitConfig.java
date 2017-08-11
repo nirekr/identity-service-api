@@ -46,15 +46,16 @@ public class IdentityServiceRabbitConfig
 
     @Bean
     @Qualifier("rabbitConnectionFactory")
-    public ConnectionFactory rabbitConnectionFactory() {
-        LOGGER.info("rabbit Connection properties:  sslenabled:" + propertiesConfig.isSslEnabled() +
-                " host:" + propertiesConfig.rabbitHostname() +
-                " port:" + propertiesConfig.rabbitPort() +
-                " tlsVersion:" + propertiesConfig.tlsVersion());
+    public ConnectionFactory rabbitConnectionFactory()
+    {
+        LOGGER.info("rabbit Connection properties:  sslenabled:" + propertiesConfig.isSslEnabled() + " host:"
+                + propertiesConfig.rabbitHostname() + " port:" + propertiesConfig.rabbitPort() + " tlsVersion:"
+                + propertiesConfig.tlsVersion());
 
         final com.rabbitmq.client.ConnectionFactory connectionFactory = new TLSConnectionFactory(propertiesConfig);
         return new RabbitMQCachingConnectionFactory(connectionFactory, propertiesConfig);
     }
+
     @Autowired
     @Qualifier("rabbitPropertiesConfig")
     private IRabbitMqPropertiesConfig propertiesConfig;
