@@ -14,5 +14,12 @@
             <outputDirectory>identity-service-api/schema/example</outputDirectory>
             <directory>src/main/resources/identity-service-api/schema/example</directory>
         </fileSet>
+        <fileSet>
+            <outputDirectory>identity-service-api</outputDirectory>
+            <directory>${project.basedir}/</directory>
+            <includes>
+                  <include>LICENSE.md</include>
+            </includes>
+        </fileSet>
     </fileSets>
 </assembly>

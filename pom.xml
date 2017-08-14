@@ -4,6 +4,11 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     
     <modelVersion>4.0.0</modelVersion>
+   
+    <!--
+     Copyright (c) 2017 Dell Inc. or its subsidiaries.  All Rights Reserved.
+    -->     
+ 
     <groupId>com.dell.cpsd.service.identity</groupId>
     <name>Identity Service API</name>
     <version>1.1-SNAPSHOT</version>
@@ -13,7 +18,7 @@
     <parent>
         <groupId>com.dell.cpsd</groupId>
         <artifactId>root-parent</artifactId>
-        <version>0.2.5</version>
+        <version>1.0.1</version>
     </parent>
 
     <dependencyManagement>
@@ -21,7 +26,7 @@
             <dependency>
                 <groupId>com.dell.cpsd</groupId>
                 <artifactId>common-dependencies</artifactId>
-                <version>1.2-SNAPSHOT</version>
+                <version>1.2.0</version>
                 <scope>import</scope>
                 <type>pom</type>
             </dependency>
@@ -32,22 +37,34 @@
         <dependency>
             <groupId>com.dell.cpsd.common.client</groupId>
             <artifactId>common-client</artifactId>
-            <version>1.3-SNAPSHOT</version>
+            <version>1.3.0</version>
             <scope>provided</scope>
         </dependency>
+
 
         <dependency>
             <groupId>com.dell.cpsd.common.messaging</groupId>
             <artifactId>common-messaging-parent</artifactId>
-            <version>1.4-SNAPSHOT</version>
+            <version>1.5.0</version>
             <type>pom</type>
         </dependency>
 
         <!-- Test Dependencies -->
+
         <dependency>
             <groupId>junit</groupId>
             <artifactId>junit</artifactId>
+            <version>4.12</version>
+            <scope>compile</scope>
         </dependency>
+
+        <dependency>
+            <groupId>org.mockito</groupId>
+            <artifactId>mockito-core</artifactId>
+            <version>2.8.9</version>
+            <scope>test</scope>
+        </dependency>
+
     </dependencies>
 
     <build>
@@ -60,7 +77,7 @@
                     <dependency>
                         <groupId>com.dell.cpsd.common.messaging</groupId>
                         <artifactId>common-contract-enricher</artifactId>
-                        <version>1.4-SNAPSHOT</version>
+                        <version>1.5.0</version>
                     </dependency>
                 </dependencies>
                 <executions>
@@ -125,9 +142,6 @@
             </plugin>
        </plugins>
         <resources>
-            <resource>
-                <directory>${project.basedir}/src/main/resources/</directory>
-            </resource>
             <resource>
                 <directory>${project.basedir}/</directory>
                 <includes>

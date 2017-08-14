@@ -28,13 +28,14 @@ import com.dell.cpsd.service.common.client.rpc.ServiceRequestCallback;
  * Copyright © 2017 Dell Inc. or its subsidiaries.  All Rights Reserved.
  * </p>
  *
- * @since SINCE-TBD
+ * @since 1.0
  */
+
 public class IdentityServiceClient extends AbstractServiceClient
 {
     private final DelegatingMessageConsumer consumer;
-    private final IdentityServiceProducer producer;
-    private final RabbitContext rabbitContext;
+    private final IdentityServiceProducer   producer;
+    private final RabbitContext             rabbitContext;
 
     IdentityServiceClient(ILogger logger, RabbitContext rabbitContext, DelegatingMessageConsumer consumer, IdentityServiceProducer producer)
     {
@@ -63,12 +64,11 @@ public class IdentityServiceClient extends AbstractServiceClient
      * @throws ServiceExecutionException
      * @throws ServiceTimeoutException
      */
-    public ElementsIdentified identifyElements(
-            final IdentifyElementsCriteria criteria, final long timeout)
+    public ElementsIdentified identifyElements(final IdentifyElementsCriteria criteria, final long timeout)
             throws ServiceExecutionException, ServiceTimeoutException
     {
-        final IdentifyElements element = new IdentifyElements(timestamp(), uuid(), replyTo(IdentifyElements.class, ElementsIdentified.class),
-                criteria.getElementIdentities());
+        final IdentifyElements element = new IdentifyElements(timestamp(), uuid(),
+                replyTo(IdentifyElements.class, ElementsIdentified.class), criteria.getElementIdentities());
 
         ServiceResponse<?> response = processRequest(timeout, new ServiceRequestCallback()
         {
@@ -97,12 +97,11 @@ public class IdentityServiceClient extends AbstractServiceClient
      * @throws ServiceExecutionException
      * @throws ServiceTimeoutException
      */
-    public ElementsDescribed describeElements(
-            final DescribeElementsCriteria criteria, final long timeout)
+    public ElementsDescribed describeElements(final DescribeElementsCriteria criteria, final long timeout)
             throws ServiceExecutionException, ServiceTimeoutException
     {
-        final DescribeElements element = new DescribeElements(timestamp(), uuid(), replyTo(DescribeElements.class, ElementsDescribed.class),
-                criteria.getElementUuid());
+        final DescribeElements element = new DescribeElements(timestamp(), uuid(),
+                replyTo(DescribeElements.class, ElementsDescribed.class), criteria.getElementUuid());
 
         ServiceResponse<ElementsDescribed> response = processRequest(timeout, new ServiceRequestCallback()
         {
@@ -122,11 +121,22 @@ public class IdentityServiceClient extends AbstractServiceClient
         return processResponse(response, ElementsDescribed.class);
     }
 
+    /**
+     * @param request
+     * @param reply
+     * @return String
+     */
     private String replyTo(Class request, Class reply)
     {
         return rabbitContext.getReplyTo(request, reply);
     }
 
+    /**
+     * @param response
+     * @param expectedResponse
+     * @return RunTime Type of expectedResponse
+     * @throws ServiceExecutionException
+     */
     private <R> R processResponse(ServiceResponse<?> response, Class<R> expectedResponse) throws ServiceExecutionException
     {
         Object responseMessage = response.getResponse();
@@ -137,11 +147,11 @@ public class IdentityServiceClient extends AbstractServiceClient
 
         if (expectedResponse.isAssignableFrom(responseMessage.getClass()))
         {
-            return (R)responseMessage;
+            return (R) responseMessage;
         }
         else if (responseMessage instanceof IdentityServiceError)
         {
-            IdentityServiceError error = (IdentityServiceError)responseMessage;
+            IdentityServiceError error = (IdentityServiceError) responseMessage;
             throw new ServiceExecutionException(error.getErrorMessage());
         }
         else

@@ -37,24 +37,28 @@ import java.util.Collection;
  * Copyright © 2017 Dell Inc. or its subsidiaries.  All Rights Reserved.
  * </p>
  *
- * @since SINCE-TBD
+ * @since 1.0
  */
 @Configuration
 public class IdentityServiceRabbitConfig
 {
     private static final Logger LOGGER = LoggerFactory.getLogger(IdentityServiceRabbitConfig.class);
 
+    /**
+     * @return RabbitMQCachingConnectionFactory instance created from propertiesConfig
+     */
     @Bean
     @Qualifier("rabbitConnectionFactory")
-    public ConnectionFactory rabbitConnectionFactory() {
-        LOGGER.info("rabbit Connection properties:  sslenabled:" + propertiesConfig.isSslEnabled() +
-                " host:" + propertiesConfig.rabbitHostname() +
-                " port:" + propertiesConfig.rabbitPort() +
-                " tlsVersion:" + propertiesConfig.tlsVersion());
+    public ConnectionFactory rabbitConnectionFactory()
+    {
+        LOGGER.info("rabbit Connection properties:  sslenabled:" + propertiesConfig.isSslEnabled() + " host:"
+                + propertiesConfig.rabbitHostname() + " port:" + propertiesConfig.rabbitPort() + " tlsVersion:"
+                + propertiesConfig.tlsVersion());
 
         final com.rabbitmq.client.ConnectionFactory connectionFactory = new TLSConnectionFactory(propertiesConfig);
         return new RabbitMQCachingConnectionFactory(connectionFactory, propertiesConfig);
     }
+
     @Autowired
     @Qualifier("rabbitPropertiesConfig")
     private IRabbitMqPropertiesConfig propertiesConfig;
@@ -65,6 +69,10 @@ public class IdentityServiceRabbitConfig
     @Autowired
     private OpinionatedRabbitTemplate rabbitTemplate;
 
+    /**
+     * @return RabbitContextBuilder instance created from ConnectionFactory, ApplicationConfiguration, collection of MessageMetaData
+     * @throws IOException
+     */
     @Bean
     public RabbitContext rabbitContext() throws IOException
     {

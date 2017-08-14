@@ -35,7 +35,7 @@ pipeline {
         }
         stage('Compile') {
             steps {
-                sh "mvn clean install -Dmaven.repo.local=.repo -DskipTests=true -DskipITs=true"
+                sh "mvn clean install -Dmaven.repo.local=.repo -DskipITs=true"
             }
         }
         stage('Unit Testing') {
@@ -46,7 +46,7 @@ pipeline {
         stage('Deploy') {
             when {
                 expression {
-                    return env.BRANCH_NAME ==~ /master|develop|release\/.*/
+                    return env.BRANCH_NAME ==~ /master|opensource-transformers|develop|release\/.*/
                 }
             }
             steps {
