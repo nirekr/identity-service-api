@@ -14,7 +14,7 @@ import org.springframework.context.annotation.Configuration;
  * Copyright © 2017 Dell Inc. or its subsidiaries.  All Rights Reserved.
  * </p>
  *
- * @since SINCE-TBD
+ * @since 1.0
  */
 @Configuration
 //@Qualifier("rabbitPropertiesConfig")

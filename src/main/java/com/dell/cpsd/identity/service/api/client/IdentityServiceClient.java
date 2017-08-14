@@ -28,7 +28,7 @@ import com.dell.cpsd.service.common.client.rpc.ServiceRequestCallback;
  * Copyright © 2017 Dell Inc. or its subsidiaries.  All Rights Reserved.
  * </p>
  *
- * @since SINCE-TBD
+ * @since 1.0
  */
 
 public class IdentityServiceClient extends AbstractServiceClient
