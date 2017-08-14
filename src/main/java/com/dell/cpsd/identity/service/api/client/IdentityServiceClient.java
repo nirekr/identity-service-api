@@ -30,6 +30,7 @@ import com.dell.cpsd.service.common.client.rpc.ServiceRequestCallback;
  *
  * @since SINCE-TBD
  */
+
 public class IdentityServiceClient extends AbstractServiceClient
 {
     private final DelegatingMessageConsumer consumer;
@@ -120,11 +121,22 @@ public class IdentityServiceClient extends AbstractServiceClient
         return processResponse(response, ElementsDescribed.class);
     }
 
+    /**
+     * @param request
+     * @param reply
+     * @return String
+     */
     private String replyTo(Class request, Class reply)
     {
         return rabbitContext.getReplyTo(request, reply);
     }
 
+    /**
+     * @param response
+     * @param expectedResponse
+     * @return RunTime Type of expectedResponse
+     * @throws ServiceExecutionException
+     */
     private <R> R processResponse(ServiceResponse<?> response, Class<R> expectedResponse) throws ServiceExecutionException
     {
         Object responseMessage = response.getResponse();

@@ -32,6 +32,13 @@ public class IdentityServiceClientFactory
         this.logger = logger;
     }
 
+    /**
+     * Register propertySourceConfigurations on AnnotationConfigApplicationContext. Return instance of IdentityServiceClient
+     * 
+     * @param applicationConfiguration
+     * @param propertySourceConfigurations
+     * @return IdentityServiceClient
+     */
     public IdentityServiceClient createClient(ApplicationConfiguration applicationConfiguration, Class... propertySourceConfigurations)
     {
         ApplicationConfigurationContext.setCurrent(applicationConfiguration);

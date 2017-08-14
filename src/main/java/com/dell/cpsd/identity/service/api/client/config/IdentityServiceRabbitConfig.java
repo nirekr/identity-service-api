@@ -44,6 +44,9 @@ public class IdentityServiceRabbitConfig
 {
     private static final Logger LOGGER = LoggerFactory.getLogger(IdentityServiceRabbitConfig.class);
 
+    /**
+     * @return RabbitMQCachingConnectionFactory instance created from propertiesConfig
+     */
     @Bean
     @Qualifier("rabbitConnectionFactory")
     public ConnectionFactory rabbitConnectionFactory()
@@ -66,6 +69,10 @@ public class IdentityServiceRabbitConfig
     @Autowired
     private OpinionatedRabbitTemplate rabbitTemplate;
 
+    /**
+     * @return RabbitContextBuilder instance created from ConnectionFactory, ApplicationConfiguration, collection of MessageMetaData
+     * @throws IOException
+     */
     @Bean
     public RabbitContext rabbitContext() throws IOException
     {
