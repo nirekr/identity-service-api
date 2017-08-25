@@ -7,6 +7,9 @@
     "stereotype": "REPLY"
   },
   "properties": {
+    "messageProperties": {
+      "$ref": "MessageProperties.jsd"
+     },
     "timestamp": {
       "type": "string",
       "format": "date-time",
@@ -28,6 +31,7 @@
   "required": [
     "timestamp",
     "correlationId",
-    "elementDescription"
+    "elementDescription",
+    "messageProperties"
   ]
 }
