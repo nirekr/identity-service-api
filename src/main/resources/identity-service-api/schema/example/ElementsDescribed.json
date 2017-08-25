@@ -1,6 +1,11 @@
 {
   "timestamp": "2017-01-27T14:16:21Z",
   "correlationId": "5d7f6d34-4271-4593-9bad-1b95589e5189",
+  "messageProperties": {
+      "timestamp": "2010-01-01T12:00:00Z",
+      "correlationId": "fafcdcf4-ae37-4456-94f5-609bad2026ef",
+      "replyTo": "N/A"
+  },
   "elementDescriptions": [
     {
       "elementUuid": "fafcdcf4-ae37-4456-94f5-609bad2026ef",
