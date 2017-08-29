@@ -1,10 +1,8 @@
 UPSTREAM_TRIGGERS = getUpstreamTriggers([
-    "common-client-parent",
-    "common-dependencies",
-    "common-messaging-parent"
+    "common-dependencies"
 ])
 
-pipeline {    
+pipeline {
     triggers {
         upstream(upstreamProjects: UPSTREAM_TRIGGERS, threshold: hudson.model.Result.SUCCESS)
     }
@@ -17,7 +15,7 @@ pipeline {
     environment {
         GITHUB_TOKEN = credentials('git-02')
     }
-    options { 
+    options {
         skipDefaultCheckout()
         buildDiscarder(logRotator(artifactDaysToKeepStr: '30', artifactNumToKeepStr: '5', daysToKeepStr: '30', numToKeepStr: '5'))
         timestamps()
@@ -33,9 +31,14 @@ pipeline {
                 doCheckout()
             }
         }
+        stage('.travis.yml Validation') {
+            steps {
+                doTravisLint()
+            }
+        }
         stage('Compile') {
             steps {
-                sh "mvn clean install -Dmaven.repo.local=.repo -DskipITs=true"
+                sh "mvn clean install -Dmaven.repo.local=.repo -DskipTests=true -DskipITs=true"
             }
         }
         stage('Unit Testing') {
@@ -43,19 +46,32 @@ pipeline {
                 sh "mvn verify -Dmaven.repo.local=.repo"
             }
         }
-        stage('Deploy') {
-            when {
-                expression {
-                    return env.BRANCH_NAME ==~ /master|opensource-transformers|develop|release\/.*/
-                }
-            }
+        stage('Record Test Results') {
             steps {
-                sh "mvn deploy -Dmaven.repo.local=.repo -DskipTests=true -DskipITs=true"
+                junit '**/target/*-reports/*.xml'
+            }
+        }
+        stage('PasswordScan') {
+            steps {
+                doPwScan()
+            }
+        }
+        stage('Deploy') {
+            steps {
+                script {
+                    if (env.BRANCH_NAME ==~ /stable.*/) {
+                        withCredentials([string(credentialsId: 'GPG-Dell-Key', variable: 'GPG_PASSPHRASE')]) {
+                            sh "mvn deploy -Dmaven.repo.local=.repo -DskipTests=true -DskipITs=true -Ppublish-release -Dgpg.passphrase=${GPG_PASSPHRASE} -Dgpg.keyname=73BD7C5F -DskipJavadoc=false -DskipJavasource=false"
+                        }
+                    } else {
+                        sh "mvn deploy -Dmaven.repo.local=.repo -DskipTests=true -DskipITs=true"
+                    }
+                }
             }
         }
         stage('SonarQube Analysis') {
             steps {
-                doSonarAnalysis()    
+                doSonarAnalysis()
             }
         }
         stage('Third Party Audit') {
@@ -72,17 +88,12 @@ pipeline {
             steps {
                 sh 'rm -rf .repo'
                 doNexbScanning()
-            }
-        }
-        stage('PasswordScan') {
-            steps {
-                doPwScan()
-            }
+           }
         }
     }
     post {
         always {
-            cleanWorkspace()   
+            cleanWorkspace()
         }
         success {
             successEmail()
