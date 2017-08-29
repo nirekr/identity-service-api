@@ -1,37 +1,68 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<project xmlns="http://maven.apache.org/POM/4.0.0"
-         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+<project xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://maven.apache.org/POM/4.0.0"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
-    
     <modelVersion>4.0.0</modelVersion>
-   
     <!--
-     Copyright (c) 2017 Dell Inc. or its subsidiaries.  All Rights Reserved.
-    -->     
- 
-    <groupId>com.dell.cpsd.service.identity</groupId>
-    <name>Identity Service API</name>
-    <version>2.0.0</version>
-    <artifactId>identity-service-api</artifactId>
-    <packaging>jar</packaging>
-
+    Copyright (c) 2017 Dell Inc. or its subsidiaries.  All Rights Reserved.
+    -->
     <parent>
         <groupId>com.dell.cpsd</groupId>
         <artifactId>root-parent</artifactId>
         <version>1.0.1</version>
     </parent>
 
-    <dependencyManagement>
-        <dependencies>
-            <dependency>
-                <groupId>com.dell.cpsd</groupId>
-                <artifactId>common-dependencies</artifactId>
-                <version>1.2.0</version>
-                <scope>import</scope>
-                <type>pom</type>
-            </dependency>
-         </dependencies>
-    </dependencyManagement>
+    <groupId>com.dell.cpsd</groupId>
+    <name>Identity Service API</name>
+    <version>2.0.0</version>
+    <artifactId>identity-service-api</artifactId>
+    <packaging>jar</packaging>
+
+    <description>
+        This repository creates a UUID for any managed element.
+    </description>
+    <url>https://github.com/dellemc-symphony/identity-service-api</url>
+
+    <licenses>
+        <license>
+            <name>Eclipse Public License - v 1.0</name>
+            <url>http://www.eclipse.org/legal/epl-v10.html</url>
+        </license>
+    </licenses>
+
+    <properties>
+        <junit-version>4.12</junit-version>
+        <maven.compiler.source>1.8</maven.compiler.source>
+        <maven.compiler.target>1.8</maven.compiler.target>
+        <spring.framework.version>4.3.8.RELEASE</spring.framework.version>
+    </properties>
+
+    <developers>
+        <developer>
+            <name>Brendan Hoey</name>
+            <email>brendan.hoey@dell.com</email>
+            <organization>com.dell.cpsd</organization>
+            <organizationUrl>https://github.com/visionless</organizationUrl>
+        </developer>
+    </developers>
+
+    <scm>
+        <connection>scm:git:https://github.com/dellemc-symphony/identity-service-api.git</connection>
+        <developerConnection>scm:git:https://github.com/dellemc-symphony/identity-service-api
+        </developerConnection>
+        <url>https://github.com/dellemc-symphony/identity-service-api/tree/master</url>
+        <tag>HEAD</tag>
+    </scm>
+
+    <!--<dependencyManagement>-->
+    <!--<dependencies>-->
+    <!--<dependency>-->
+    <!--<groupId>com.dell.cpsd</groupId>-->
+    <!--<artifactId>common-dependencies</artifactId>-->
+    <!--<version>1.2.0</version>-->
+    <!--<scope>import</scope>-->
+    <!--<type>pom</type>-->
+    <!--</dependency>-->
+    <!--</dependencies>-->
+    <!--</dependencyManagement>-->
 
     <dependencies>
         <dependency>
@@ -40,7 +71,6 @@
             <version>2.0.0</version>
             <scope>provided</scope>
         </dependency>
-
 
         <dependency>
             <groupId>com.dell.cpsd</groupId>
