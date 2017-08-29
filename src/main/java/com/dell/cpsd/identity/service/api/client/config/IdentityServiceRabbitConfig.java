@@ -5,9 +5,7 @@
 
 package com.dell.cpsd.identity.service.api.client.config;
 
-import java.io.FileInputStream;
 import java.io.IOException;
-import java.io.InputStream;
 import java.util.Collection;
 
 import org.slf4j.Logger;
@@ -20,6 +18,7 @@ import org.springframework.context.annotation.Configuration;
 
 import com.dell.cpsd.common.rabbitmq.config.IRabbitMqPropertiesConfig;
 import com.dell.cpsd.common.rabbitmq.connectors.RabbitMQCachingConnectionFactory;
+import com.dell.cpsd.common.rabbitmq.connectors.TLSConnectionFactory;
 import com.dell.cpsd.common.rabbitmq.context.ApplicationConfiguration;
 import com.dell.cpsd.common.rabbitmq.context.ApplicationConfigurationContext;
 import com.dell.cpsd.common.rabbitmq.context.RabbitContext;
@@ -61,7 +60,7 @@ public class IdentityServiceRabbitConfig
                 + propertiesConfig.rabbitHostname() + " port:" + propertiesConfig.rabbitPort() + " tlsVersion:"
                 + propertiesConfig.tlsVersion());
 
-        final com.rabbitmq.client.ConnectionFactory connectionFactory = new com.rabbitmq.client.ConnectionFactory();//new TLSConnectionFactory(propertiesConfig);
+        final com.rabbitmq.client.ConnectionFactory connectionFactory = new TLSConnectionFactory(propertiesConfig);
         return new RabbitMQCachingConnectionFactory(connectionFactory, propertiesConfig);
     }
 
