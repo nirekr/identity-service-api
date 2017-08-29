@@ -11,7 +11,7 @@
  
     <groupId>com.dell.cpsd.service.identity</groupId>
     <name>Identity Service API</name>
-    <version>1.1-SNAPSHOT</version>
+    <version>1.1.1-SNAPSHOT</version>
     <artifactId>identity-service-api</artifactId>
     <packaging>jar</packaging>
 

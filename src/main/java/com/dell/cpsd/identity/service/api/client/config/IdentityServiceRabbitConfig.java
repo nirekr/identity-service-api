@@ -5,22 +5,11 @@
 
 package com.dell.cpsd.identity.service.api.client.config;
 
-import com.dell.cpsd.common.rabbitmq.config.IRabbitMqPropertiesConfig;
-import com.dell.cpsd.common.rabbitmq.connectors.RabbitMQCachingConnectionFactory;
-import com.dell.cpsd.common.rabbitmq.connectors.TLSConnectionFactory;
-import com.dell.cpsd.common.rabbitmq.context.ApplicationConfiguration;
-import com.dell.cpsd.common.rabbitmq.context.ApplicationConfigurationContext;
-import com.dell.cpsd.common.rabbitmq.context.RabbitContext;
-import com.dell.cpsd.common.rabbitmq.context.RabbitContextListener;
-import com.dell.cpsd.common.rabbitmq.context.builder.MessageMetaData;
-import com.dell.cpsd.common.rabbitmq.context.builder.MessageMetaDataReader;
-import com.dell.cpsd.common.rabbitmq.context.builder.RabbitContextBuilder;
-import com.dell.cpsd.common.rabbitmq.template.OpinionatedRabbitTemplate;
-import com.dell.cpsd.identity.service.api.*;
-import com.dell.cpsd.identity.service.api.client.amqp.producer.AmqpIdentityServiceProducer;
-import com.dell.cpsd.identity.service.api.client.amqp.producer.IdentityServiceProducer;
-import com.dell.cpsd.service.common.client.rpc.DefaultMessageConsumer;
-import com.dell.cpsd.service.common.client.rpc.DelegatingMessageConsumer;
+import java.io.FileInputStream;
+import java.io.IOException;
+import java.io.InputStream;
+import java.util.Collection;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.amqp.rabbit.connection.ConnectionFactory;
@@ -29,8 +18,25 @@ import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
-import java.io.IOException;
-import java.util.Collection;
+import com.dell.cpsd.common.rabbitmq.config.IRabbitMqPropertiesConfig;
+import com.dell.cpsd.common.rabbitmq.connectors.RabbitMQCachingConnectionFactory;
+import com.dell.cpsd.common.rabbitmq.context.ApplicationConfiguration;
+import com.dell.cpsd.common.rabbitmq.context.ApplicationConfigurationContext;
+import com.dell.cpsd.common.rabbitmq.context.RabbitContext;
+import com.dell.cpsd.common.rabbitmq.context.RabbitContextListener;
+import com.dell.cpsd.common.rabbitmq.context.builder.MessageMetaData;
+import com.dell.cpsd.common.rabbitmq.context.builder.MessageMetaDataReader;
+import com.dell.cpsd.common.rabbitmq.context.builder.RabbitContextBuilder;
+import com.dell.cpsd.common.rabbitmq.template.OpinionatedRabbitTemplate;
+import com.dell.cpsd.identity.service.api.DescribeElements;
+import com.dell.cpsd.identity.service.api.ElementsDescribed;
+import com.dell.cpsd.identity.service.api.ElementsIdentified;
+import com.dell.cpsd.identity.service.api.IdentifyElements;
+import com.dell.cpsd.identity.service.api.IdentityServiceError;
+import com.dell.cpsd.identity.service.api.client.amqp.producer.AmqpIdentityServiceProducer;
+import com.dell.cpsd.identity.service.api.client.amqp.producer.IdentityServiceProducer;
+import com.dell.cpsd.service.common.client.rpc.DefaultMessageConsumer;
+import com.dell.cpsd.service.common.client.rpc.DelegatingMessageConsumer;
 
 /**
  * <p>
@@ -55,7 +61,7 @@ public class IdentityServiceRabbitConfig
                 + propertiesConfig.rabbitHostname() + " port:" + propertiesConfig.rabbitPort() + " tlsVersion:"
                 + propertiesConfig.tlsVersion());
 
-        final com.rabbitmq.client.ConnectionFactory connectionFactory = new TLSConnectionFactory(propertiesConfig);
+        final com.rabbitmq.client.ConnectionFactory connectionFactory = new com.rabbitmq.client.ConnectionFactory();//new TLSConnectionFactory(propertiesConfig);
         return new RabbitMQCachingConnectionFactory(connectionFactory, propertiesConfig);
     }
 
@@ -79,8 +85,9 @@ public class IdentityServiceRabbitConfig
         ApplicationConfiguration applicationConfiguration = ApplicationConfigurationContext.getCurrent();
 
         MessageMetaDataReader reader = new MessageMetaDataReader();
+        
         Collection<MessageMetaData> metaDatas = reader.read(getClass().getClassLoader().getResourceAsStream(
-                "META-INF/spring/identity-service-api/amqp.json"));
+                "/opt/dell/cpsd/TOOL/amqp.json"));
 
         RabbitContextBuilder contextBuilder = new RabbitContextBuilder(rabbitConnectionFactory(), applicationConfiguration, metaDatas);
 
