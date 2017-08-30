@@ -10,32 +10,27 @@
         <artifactId>root-parent</artifactId>
         <version>1.0.1</version>
     </parent>
-
     <groupId>com.dell.cpsd</groupId>
     <name>Identity Service API</name>
     <version>2.0.0</version>
     <artifactId>identity-service-api</artifactId>
     <packaging>jar</packaging>
-
     <description>
         This repository creates a UUID for any managed element.
     </description>
     <url>https://github.com/dellemc-symphony/identity-service-api</url>
-
     <licenses>
         <license>
             <name>Eclipse Public License - v 1.0</name>
             <url>http://www.eclipse.org/legal/epl-v10.html</url>
         </license>
     </licenses>
-
     <properties>
         <junit-version>4.12</junit-version>
         <maven.compiler.source>1.8</maven.compiler.source>
         <maven.compiler.target>1.8</maven.compiler.target>
         <spring.framework.version>4.3.8.RELEASE</spring.framework.version>
     </properties>
-
     <developers>
         <developer>
             <name>Brendan Hoey</name>
@@ -44,7 +39,6 @@
             <organizationUrl>https://github.com/visionless</organizationUrl>
         </developer>
     </developers>
-
     <scm>
         <connection>scm:git:https://github.com/dellemc-symphony/identity-service-api.git</connection>
         <developerConnection>scm:git:https://github.com/dellemc-symphony/identity-service-api
@@ -52,7 +46,6 @@
         <url>https://github.com/dellemc-symphony/identity-service-api/tree/master</url>
         <tag>HEAD</tag>
     </scm>
-
     <dependencies>
         <dependency>
             <groupId>com.dell.cpsd</groupId>
@@ -60,30 +53,25 @@
             <version>2.0.0</version>
             <scope>provided</scope>
         </dependency>
-
         <dependency>
             <groupId>com.dell.cpsd</groupId>
             <artifactId>common-dependencies</artifactId>
             <version>1.2.0</version>
             <type>pom</type>
         </dependency>
-
         <dependency>
             <groupId>com.dell.cpsd</groupId>
             <artifactId>common-messaging-parent</artifactId>
             <version>2.0.0</version>
             <type>pom</type>
         </dependency>
-
         <!-- Test Dependencies -->
-
         <dependency>
             <groupId>junit</groupId>
             <artifactId>junit</artifactId>
             <version>4.12</version>
             <scope>compile</scope>
         </dependency>
-
         <dependency>
             <groupId>org.mockito</groupId>
             <artifactId>mockito-core</artifactId>
@@ -91,7 +79,6 @@
             <scope>test</scope>
         </dependency>
     </dependencies>
-
     <build>
         <plugins>
             <plugin>
@@ -122,11 +109,11 @@
                             <serializable>false</serializable>
                             <useCommonsLang3>true</useCommonsLang3>
                             <customAnnotator>com.dell.cpsd.common.contract.enricher.plugins.jsonschema2pojo.MessageAnnotator</customAnnotator>
+                            <customRuleFactory>com.dell.cpsd.common.contract.enricher.plugins.jsonschema2pojo.DefaultRuleFactory</customRuleFactory>
                         </configuration>
                     </execution>
                 </executions>
             </plugin>
-
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-assembly-plugin</artifactId>
@@ -188,5 +175,4 @@
             </resource>
         </resources>
     </build>
-
 </project>
