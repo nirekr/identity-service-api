@@ -108,6 +108,7 @@
                             <includeConstructors>true</includeConstructors>
                             <serializable>false</serializable>
                             <useCommonsLang3>true</useCommonsLang3>
+                            <includeAdditionalProperties>false</includeAdditionalProperties>
                             <customAnnotator>com.dell.cpsd.common.contract.enricher.plugins.jsonschema2pojo.MessageAnnotator</customAnnotator>
                             <customRuleFactory>com.dell.cpsd.common.contract.enricher.plugins.jsonschema2pojo.DefaultRuleFactory</customRuleFactory>
                         </configuration>
