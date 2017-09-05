@@ -10,7 +10,6 @@
         <artifactId>root-parent</artifactId>
         <version>1.0.1</version>
     </parent>
-  
     <groupId>com.dell.cpsd</groupId>
     <name>Identity Service API</name>
     <version>1.2.0</version>
@@ -47,7 +46,6 @@
         <url>https://github.com/dellemc-symphony/identity-service-api/tree/master</url>
         <tag>HEAD</tag>
     </scm>
-
     <dependencies>
         <dependency>
             <groupId>com.dell.cpsd</groupId>
