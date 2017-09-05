@@ -12,7 +12,7 @@
     </parent>
     <groupId>com.dell.cpsd</groupId>
     <name>Identity Service API</name>
-    <version>2.0.0</version>
+    <version>1.2.0</version>
     <artifactId>identity-service-api</artifactId>
     <packaging>jar</packaging>
     <description>

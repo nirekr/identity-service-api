@@ -1,23 +1,13 @@
-
+[![License](https://img.shields.io/badge/License-EPL%201.0-red.svg)](https://opensource.org/licenses/EPL-1.0)
+[![Build Status](https://travis-ci.org/dellemc-symphony/identity-service-api.svg?branch=master)](https://travis-ci.org/dellemc-symphony/identity-service-api)
+[![Slack](http://community.codedellemc.com/badge.svg)](https://codecommunity.slack.com/messages/symphony)
+[![Codecov](https://img.shields.io/codecov/c/github/dellemc-symphony/identity-service-api.svg)](https://codecov.io/gh/dellemc-symphony/identity-service-api)
+[![Maven Central](https://maven-badges.herokuapp.com/maven-central/com.dell.cpsd/identity-service-api/badge.svg)](https://maven-badges.herokuapp.com/maven-central/com.dell.cpsd/identity-service-api)
+[![Semver](http://img.shields.io/SemVer/2.0.0.png)](http://semver.org/spec/v2.0.0.html)
 
 ## Description
 
-This repository contains the source code for common-contract-enricher, common-testing, and common-rabbitmq.
-
-* common-contract-enricher helps with the generation of classes from the API Java Shared Data (JSD) files.
-
-* common-testing is a tiny artifact used as a test dependency to provide small utilities for JUnit testing purposes (such as message file reader function)
-The testing dependency import should use the scope import:
-```bash
-<scope>import</scope>
-```
-
-* common-rabbitmq is a library of AMQP-related functions including but not limited to:
-  * message aggregator
-  * base Spring configuration
-  * basic messaging validation checks
-  * default retry policy
-  * basic error handling
+This repository creates a UUID for any managed element.
 
 ## Documentation
 You can find additional documentation for Project Symphony at [dellemc-symphony.readthedocs.io](https://dellemc-symphony.readthedocs.io).
