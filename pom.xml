@@ -38,6 +38,24 @@
             <organization>com.dell.cpsd</organization>
             <organizationUrl>https://github.com/visionless</organizationUrl>
         </developer>
+        <developer>
+            <name>Nitesh Panchal</name>
+            <email>Nitesh.Panchal@dell.com</email>
+            <organization>com.dell.cpsd</organization>
+            <organizationUrl>https://github.com/panchn</organizationUrl>
+        </developer>
+        <developer>
+            <name>Vijaya Vamsi Alla</name>
+            <email>Vijaya.Alla@dell.com</email>
+            <organization>com.dell.cpsd</organization>
+            <organizationUrl>https://github.com/VJVamsiAlla</organizationUrl>
+        </developer>
+        <developer>
+            <name>Anil Pasumarthi</name>
+            <email>Anil.Pasumarthi@dell.com</email>
+            <organization>com.dell.cpsd</organization>
+            <organizationUrl>https://github.com/akpasumarthi</organizationUrl>
+        </developer>
     </developers>
     <scm>
         <connection>scm:git:https://github.com/dellemc-symphony/identity-service-api.git</connection>
