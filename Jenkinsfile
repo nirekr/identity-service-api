@@ -33,24 +33,15 @@ pipeline {
                 doCheckout()
             }
         }
-        stage('Compile') {
+        stage('Build') {
             steps {
-                sh "mvn clean install -Dmaven.repo.local=.repo -DskipITs=true"
-            }
-        }
-        stage('Unit Testing') {
-            steps {
-                sh "mvn verify -Dmaven.repo.local=.repo"
-            }
-        }
-        stage('Deploy') {
-            when {
-                expression {
-                    return env.BRANCH_NAME ==~ /master|opensource-transformers|develop|release\/.*/
+                script {
+                    if (env.BRANCH_NAME ==~ /master|stable\/.*/) {
+                        sh "mvn clean deploy -Dmaven.repo.local=.repo"
+                    } else {
+                        sh "mvn clean install -Dmaven.repo.local=.repo"
+                    }
                 }
-            }
-            steps {
-                sh "mvn deploy -Dmaven.repo.local=.repo -DskipTests=true -DskipITs=true"
             }
         }
         stage('SonarQube Analysis') {
@@ -70,7 +61,6 @@ pipeline {
         }
         stage('NexB Scan') {
             steps {
-                sh 'rm -rf .repo'
                 doNexbScanning()
             }
         }
