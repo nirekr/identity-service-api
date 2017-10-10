@@ -42,7 +42,7 @@ public class IdentityServiceClientFactoryIntegrationTest
                 "appX");
 
         IdentityServiceClientFactory factory = new IdentityServiceClientFactory(LOGGER);
-        client = factory.createClient(applicationConfiguration, DummyPropertySourceConfiguration.class);
+        client = factory.createClient(null, applicationConfiguration, DummyPropertySourceConfiguration.class);
     }
 
     @Test

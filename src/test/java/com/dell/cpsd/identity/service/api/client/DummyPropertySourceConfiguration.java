@@ -20,7 +20,7 @@ import org.springframework.context.annotation.PropertySources;
  */
 @Configuration
 @PropertySources({
-        @PropertySource(value = "classpath:META-INF/spring/identity-service-api/rabbitmq.properties"),
+        @PropertySource(value = "classpath:META-INF/spring/identity-service-api/rabbitmq-config.properties"),
         @PropertySource(value = "file:/etc/rabbitmq/client/rabbitmq-config.properties", ignoreResourceNotFound = true),
         @PropertySource(value = "file:${CREDENTIALS}", ignoreResourceNotFound = true),
         @PropertySource(value = "file:${PASSPHRASES}", ignoreResourceNotFound = true)

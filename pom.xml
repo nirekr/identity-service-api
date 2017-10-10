@@ -11,16 +11,19 @@
  
     <groupId>com.dell.cpsd.service.identity</groupId>
     <name>Identity Service API</name>
-    <version>1.2.1-SNAPSHOT</version>
+    <version>1.2.2-SNAPSHOT</version>
     <artifactId>identity-service-api</artifactId>
     <packaging>jar</packaging>
 
     <parent>
         <groupId>com.dell.cpsd</groupId>
         <artifactId>root-parent</artifactId>
-        <version>0.2.6</version>
+        <version>1.0.0</version>
     </parent>
 
+    <properties>
+        <common-client-version>2.1.0-SNAPSHOT</common-client-version>
+    </properties>
     <dependencyManagement>
         <dependencies>
             <dependency>
@@ -35,19 +38,12 @@
 
     <dependencies>
         <dependency>
-            <groupId>com.dell.cpsd.common.client</groupId>
+            <groupId>com.dell.cpsd</groupId>
             <artifactId>common-client</artifactId>
-            <version>1.3.0</version>
+            <version>${common-client-version}</version>
             <scope>provided</scope>
         </dependency>
 
-
-        <dependency>
-            <groupId>com.dell.cpsd.common.messaging</groupId>
-            <artifactId>common-messaging-parent</artifactId>
-            <version>1.5.0</version>
-            <type>pom</type>
-        </dependency>
 
         <!-- Test Dependencies -->
 
@@ -120,11 +116,13 @@
                     </execution>
                 </executions>
             </plugin>
+
             <plugin>
                 <groupId>org.jacoco</groupId>
                 <artifactId>jacoco-maven-plugin</artifactId>
                 <version>${jacoco-maven-plugin.version}</version>
             </plugin>
+
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-surefire-plugin</artifactId>
@@ -135,11 +133,13 @@
                     </excludes>
                 </configuration>
             </plugin>
+
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-failsafe-plugin</artifactId>
                 <version>${maven-failsafe-plugin.version}</version>
             </plugin>
+
        </plugins>
         <resources>
             <resource>

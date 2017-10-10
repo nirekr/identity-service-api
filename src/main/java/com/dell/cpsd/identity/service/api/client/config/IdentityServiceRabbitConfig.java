@@ -5,9 +5,6 @@
 
 package com.dell.cpsd.identity.service.api.client.config;
 
-import com.dell.cpsd.common.rabbitmq.config.IRabbitMqPropertiesConfig;
-import com.dell.cpsd.common.rabbitmq.connectors.RabbitMQCachingConnectionFactory;
-import com.dell.cpsd.common.rabbitmq.connectors.TLSConnectionFactory;
 import com.dell.cpsd.common.rabbitmq.context.ApplicationConfiguration;
 import com.dell.cpsd.common.rabbitmq.context.ApplicationConfigurationContext;
 import com.dell.cpsd.common.rabbitmq.context.RabbitContext;
@@ -16,16 +13,16 @@ import com.dell.cpsd.common.rabbitmq.context.builder.MessageMetaData;
 import com.dell.cpsd.common.rabbitmq.context.builder.MessageMetaDataReader;
 import com.dell.cpsd.common.rabbitmq.context.builder.RabbitContextBuilder;
 import com.dell.cpsd.common.rabbitmq.template.OpinionatedRabbitTemplate;
-import com.dell.cpsd.identity.service.api.*;
+import com.dell.cpsd.identity.service.api.DescribeElements;
+import com.dell.cpsd.identity.service.api.ElementsDescribed;
+import com.dell.cpsd.identity.service.api.ElementsIdentified;
+import com.dell.cpsd.identity.service.api.IdentifyElements;
+import com.dell.cpsd.identity.service.api.IdentityServiceError;
 import com.dell.cpsd.identity.service.api.client.amqp.producer.AmqpIdentityServiceProducer;
 import com.dell.cpsd.identity.service.api.client.amqp.producer.IdentityServiceProducer;
 import com.dell.cpsd.service.common.client.rpc.DefaultMessageConsumer;
 import com.dell.cpsd.service.common.client.rpc.DelegatingMessageConsumer;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.amqp.rabbit.connection.ConnectionFactory;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
@@ -42,39 +39,13 @@ import java.util.Collection;
 @Configuration
 public class IdentityServiceRabbitConfig
 {
-    private static final Logger LOGGER = LoggerFactory.getLogger(IdentityServiceRabbitConfig.class);
-
-    /**
-     * @return RabbitMQCachingConnectionFactory instance created from propertiesConfig
-     */
-    @Bean
-    @Qualifier("rabbitConnectionFactory")
-    public ConnectionFactory rabbitConnectionFactory()
-    {
-        LOGGER.info("rabbit Connection properties:  sslenabled:" + propertiesConfig.isSslEnabled() + " host:"
-                + propertiesConfig.rabbitHostname() + " port:" + propertiesConfig.rabbitPort() + " tlsVersion:"
-                + propertiesConfig.tlsVersion());
-
-        final com.rabbitmq.client.ConnectionFactory connectionFactory = new TLSConnectionFactory(propertiesConfig);
-        return new RabbitMQCachingConnectionFactory(connectionFactory, propertiesConfig);
-    }
-
-    @Autowired
-    @Qualifier("rabbitPropertiesConfig")
-    private IRabbitMqPropertiesConfig propertiesConfig;
-
-    @Autowired
-    private DelegatingMessageConsumer consumer;
-
-    @Autowired
-    private OpinionatedRabbitTemplate rabbitTemplate;
 
     /**
      * @return RabbitContextBuilder instance created from ConnectionFactory, ApplicationConfiguration, collection of MessageMetaData
      * @throws IOException
      */
-    @Bean
-    public RabbitContext rabbitContext() throws IOException
+    @Bean(name = "rabbitContext")
+    public RabbitContext rabbitContext(ConnectionFactory rabbitConnectionFactory, DelegatingMessageConsumer consumer) throws IOException
     {
         ApplicationConfiguration applicationConfiguration = ApplicationConfigurationContext.getCurrent();
 
@@ -82,7 +53,7 @@ public class IdentityServiceRabbitConfig
         Collection<MessageMetaData> metaDatas = reader.read(getClass().getClassLoader().getResourceAsStream(
                 "META-INF/spring/identity-service-api/amqp.json"));
 
-        RabbitContextBuilder contextBuilder = new RabbitContextBuilder(rabbitConnectionFactory(), applicationConfiguration, metaDatas);
+        RabbitContextBuilder contextBuilder = new RabbitContextBuilder(rabbitConnectionFactory, applicationConfiguration, metaDatas);
 
         contextBuilder.requestsAndReplies(IdentifyElements.class, queueName(applicationConfiguration, "dell.cpsd.eids.element.identified"),
                 true, consumer, ElementsIdentified.class, IdentityServiceError.class);
@@ -99,7 +70,7 @@ public class IdentityServiceRabbitConfig
     }
 
     @Bean
-    public IdentityServiceProducer identityServiceProducer()
+    public IdentityServiceProducer identityServiceProducer(OpinionatedRabbitTemplate rabbitTemplate)
     {
         return new AmqpIdentityServiceProducer(rabbitTemplate);
     }

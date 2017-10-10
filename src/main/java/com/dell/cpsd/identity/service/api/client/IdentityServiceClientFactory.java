@@ -12,6 +12,7 @@ import com.dell.cpsd.common.rabbitmq.context.RabbitContext;
 import com.dell.cpsd.identity.service.api.client.amqp.producer.IdentityServiceProducer;
 import com.dell.cpsd.identity.service.api.client.config.IdentityServiceRabbitConfig;
 import com.dell.cpsd.service.common.client.rpc.DefaultMessageConsumer;
+import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 
 /**
@@ -39,20 +40,20 @@ public class IdentityServiceClientFactory
      * @param propertySourceConfigurations
      * @return IdentityServiceClient
      */
-    public IdentityServiceClient createClient(ApplicationConfiguration applicationConfiguration, Class... propertySourceConfigurations)
+    public IdentityServiceClient createClient(ApplicationContext parentContext, ApplicationConfiguration applicationConfiguration, Class... propertySourceConfigurations)
     {
         ApplicationConfigurationContext.setCurrent(applicationConfiguration);
 
         AnnotationConfigApplicationContext context = new AnnotationConfigApplicationContext();
         final String activeProfile = System.getProperty(ACTIVE_PROFILE_PROPERTY, "production");
         context.getEnvironment().setActiveProfiles(activeProfile);
-        context.register(IdentityServiceRabbitConfig.class);
 
         for (Class configurationClass : propertySourceConfigurations)
         {
             context.register(configurationClass);
         }
-
+        context.register(IdentityServiceRabbitConfig.class);
+        context.setParent(parentContext);
         context.refresh();
 
         RabbitContext rabbitContext = context.getBean(RabbitContext.class);
