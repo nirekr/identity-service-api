@@ -5,7 +5,10 @@ UPSTREAM_TRIGGERS = [
 ]
 properties(getBuildProperties(upstreamRepos: UPSTREAM_TRIGGERS))
 
-pipeline {    
+pipeline {
+    parameters {
+        choice(choices: 'ON\nOFF', description: 'Please select appropriate flag', name: 'Deploy_Stage')
+    }
     agent {
         node {
             label 'maven-builder'
@@ -15,7 +18,7 @@ pipeline {
     environment {
         GITHUB_TOKEN = credentials('git-02')
     }
-    options { 
+    options {
         skipDefaultCheckout()
         timestamps()
     }
@@ -29,20 +32,39 @@ pipeline {
                 doCheckout()
             }
         }
-        stage('Build') {
+        stage('.travis.yml Validation') {
             steps {
-                script {
-                    if (env.BRANCH_NAME ==~ /master|stable\/.*/) {
-                        sh "mvn clean deploy -Dmaven.repo.local=.repo"
-                    } else {
-                        sh "mvn clean install -Dmaven.repo.local=.repo"
-                    }
-                }
+                doTravisLint()
+            }
+        }
+        stage('Compile') {
+            steps {
+                sh "mvn clean install -Dmaven.repo.local=.repo -DskipTests=true -DskipITs=true"
+            }
+        }
+        stage('Unit Testing') {
+            steps {
+                sh "mvn verify -Dmaven.repo.local=.repo"
+            }
+        }
+        stage('Record Test Results') {
+            steps {
+                junit '**/target/*-reports/*.xml'
+            }
+        }
+        stage('PasswordScan') {
+            steps {
+                doPwScan()
+            }
+        }
+        stage('Deploy') {
+            steps {
+                doMvnDeploy()
             }
         }
         stage('SonarQube Analysis') {
             steps {
-                doSonarAnalysis()    
+                doSonarAnalysis()
             }
         }
         stage('Third Party Audit') {
@@ -58,17 +80,12 @@ pipeline {
         stage('NexB Scan') {
             steps {
                 doNexbScanning()
-            }
-        }
-        stage('PasswordScan') {
-            steps {
-                doPwScan()
-            }
+           }
         }
     }
     post {
         always {
-            cleanWorkspace()   
+            cleanWorkspace()
         }
         success {
             successEmail()
