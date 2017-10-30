@@ -62,7 +62,7 @@ public class IdentityServiceRabbitConfigTest
     @Test
     public void identityServiceProducerTest()
     {
-        returnObj = identityServiceRabbitConfig.identityServiceProducer();
+        returnObj = identityServiceRabbitConfig.identityServiceProducer(rabbitTemplate);
         assertTrue(returnObj instanceof IdentityServiceProducer);
     }
 
