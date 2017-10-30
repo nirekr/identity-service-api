@@ -1,80 +1,100 @@
-UPSTREAM_TRIGGERS = [
-    "common-client-parent",
-    "common-dependencies",
-    "common-messaging-parent"
-]
-properties(getBuildProperties(upstreamRepos: UPSTREAM_TRIGGERS))
+UPSTREAM_TRIGGERS = getUpstreamTriggers([
+    "common-dependencies"
+])
 
-pipeline {    
-    agent {
-        node {
-            label 'maven-builder'
-            customWorkspace "workspace/${env.JOB_NAME}"
-        }
+pipeline {
+    triggers {
+        upstream(upstreamProjects: UPSTREAM_TRIGGERS, threshold: hudson.model.Result.SUCCESS)
     }
-    environment {
-        GITHUB_TOKEN = credentials('git-02')
-    }
-    options { 
-        skipDefaultCheckout()
-        timestamps()
-    }
-    tools {
-        maven 'linux-maven-3.3.9'
-        jdk 'linux-jdk1.8.0_102'
-    }
-    stages {
-        stage('Checkout') {
-            steps {
-                doCheckout()
+    parameters {
+           choice(choices: 'ON\nOFF', description: 'Please select appropriate flag', name: 'Deploy_Stage')
+        }
+     agent {
+         node {
+             label 'maven-builder'
+             customWorkspace "workspace/${env.JOB_NAME}"
+         }
+     }
+     environment {
+         GITHUB_TOKEN = credentials('git-02')
+     }
+     options {
+         skipDefaultCheckout()
+         buildDiscarder(logRotator(artifactDaysToKeepStr: '30', artifactNumToKeepStr: '5', daysToKeepStr: '30', numToKeepStr: '5'))
+         timestamps()
+         disableConcurrentBuilds()
+     }
+     tools {
+         maven 'linux-maven-3.3.9'
+         jdk 'linux-jdk1.8.0_102'
+     }
+     stages {
+         stage('Checkout') {
+             steps {
+                 doCheckout()
+             }
+         }
+         stage('.travis.yml Validation') {
+             steps {
+                 doTravisLint()
+             }
+         }
+         stage('Compile') {
+             steps {
+                 sh "mvn clean install -Dmaven.repo.local=.repo -DskipTests=true -DskipITs=true"
+             }
+         }
+         stage('Unit Testing') {
+             steps {
+                 sh "mvn verify -Dmaven.repo.local=.repo"
+             }
+         }
+         stage('Record Test Results') {
+             steps {
+                 junit '**/target/*-reports/*.xml'
+             }
+         }
+         stage('PasswordScan') {
+             steps {
+                 doPwScan()
+             }
+         }
+         stage('Deploy') {
+              steps {
+                doMvnDeploy()
+              }
+         }
+         stage('SonarQube Analysis') {
+             steps {
+                 doSonarAnalysis()
+             }
+         }
+         stage('Third Party Audit') {
+             steps {
+                 doThirdPartyAudit()
+             }
+         }
+         stage('Github Release') {
+             steps {
+                 githubRelease()
+             }
+         }
+         stage('NexB Scan') {
+             steps {
+                 sh 'rm -rf .repo'
+                 doNexbScanning()
             }
-        }
-        stage('Build') {
-            steps {
-                script {
-                    if (env.BRANCH_NAME ==~ /master|stable\/.*/) {
-                        sh "mvn clean deploy -Dmaven.repo.local=.repo"
-                    } else {
-                        sh "mvn clean install -Dmaven.repo.local=.repo"
-                    }
-                }
-            }
-        }
-        stage('SonarQube Analysis') {
-            steps {
-                doSonarAnalysis()    
-            }
-        }
-        stage('Third Party Audit') {
-            steps {
-                doThirdPartyAudit()
-            }
-        }
-        stage('Github Release') {
-            steps {
-                githubRelease()
-            }
-        }
-        stage('NexB Scan') {
-            steps {
-                doNexbScanning()
-            }
-        }
-        stage('PasswordScan') {
-            steps {
-                doPwScan()
-            }
-        }
-    }
-    post {
-        always {
-            cleanWorkspace()   
-        }
-        success {
-            successEmail()
-        }
-        failure {
-            failureEmail()
-        }
-    }
-}
+         }
+     }
+     post {
+         always {
+             cleanWorkspace()
+         }
+         success {
+             successEmail()
+         }
+         failure {
+             failureEmail()
+         }
+     }
+ }
