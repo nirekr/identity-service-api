@@ -1,3 +1,5 @@
+@Library('Pipeline Libraries@visionless') _
+
 UPSTREAM_TRIGGERS = [
     "common-client-parent",
     "common-dependencies",
