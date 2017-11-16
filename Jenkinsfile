@@ -82,6 +82,12 @@ pipeline {
                 doNexbScanning()
            }
         }
+        stage('Badge Check'){
+            steps{
+                doOpenSourceCheck()
+            }
+        }
+
     }
     post {
         always {
