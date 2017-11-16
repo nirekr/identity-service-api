@@ -7,7 +7,7 @@ properties(getBuildProperties(upstreamRepos: UPSTREAM_TRIGGERS))
 
 pipeline {
     parameters {
-        choice(choices: 'ON\nOFF', description: 'Please select appropriate flag', name: 'Deploy_Stage')
+        choice(choices: 'OFF\nON', description: 'Please select appropriate flag (master and stable branches will always be ON)', name: 'Deploy_Stage')
     }
     agent {
         node {
