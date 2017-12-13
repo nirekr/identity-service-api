@@ -1,3 +1,5 @@
+@Library('Pipeline Libraries@pschami') _
+
 UPSTREAM_TRIGGERS = [
     "common-client-parent",
     "common-dependencies",
