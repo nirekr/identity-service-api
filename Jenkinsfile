@@ -1,4 +1,4 @@
-@Library(‘Pipeline Libraries@olearj10-blackduck’)
+@Library('Pipeline Libraries@olearj10-blackduck')
 
 UPSTREAM_TRIGGERS = [
     "common-client-parent",
