@@ -1,3 +1,4 @@
+@Library(‘Pipeline Libraries@olearj10-blackduck’)
 UPSTREAM_TRIGGERS = [
     "common-client-parent",
     "common-dependencies",
@@ -47,6 +48,12 @@ pipeline {
               runFortifyScan() 
            } 
         }
+        stage('Blackduck Scan') { 
+         steps { 
+              doBlackDuckScan() 
+           } 
+        }
+        
         stage('Unit Testing') {
             steps {
                 sh "mvn verify -Dmaven.repo.local=.repo"
