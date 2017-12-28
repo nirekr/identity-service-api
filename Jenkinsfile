@@ -64,8 +64,8 @@ pipeline {
         }
         stage('Deploy') {
             steps {
-            	sh "mvn deploy -Dmaven.repo.local=.repo -DskipTests=true -DskipITs=true -Dexec.skip=true -Dskip=true -DskipDockerBuild=true"
-			}
+                doMvnDeploy()
+            }
         }
         stage('SonarQube Analysis') {
             steps {
