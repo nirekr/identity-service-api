@@ -69,7 +69,7 @@ pipeline {
         }
         stage('Upload to Repo') {
             steps {
-                uploadArtifactsToArtifactory("/master|develop|stable|refactor-wip|feature_ests_138431|release|[A-Za-z0-9_-]+-repo/")
+                uploadArtifactsToArtifactory("/master|develop|stable|refactor-wip|feature_ests_138431|release|[A-Za-z0-9_-]+-repo/",["**/*.jar","**/*.rpm"])
             }
 		}
         stage('SonarQube Analysis') {
