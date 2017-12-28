@@ -64,7 +64,7 @@ pipeline {
         }
         stage('Deploy') {
             steps {
-                def call() {
+                
 				    def nFlag = "${params.Deploy_Stage}"
 				    if (env.BRANCH_NAME ==~ /master|q3stable|stable|feature_ests_.*/) {
 				        nFlag = "ON"
@@ -92,7 +92,7 @@ pipeline {
 				            echo "Skipping Deploy Stage: Branch -> ${env.BRANCH_NAME} Selected Flag -> ${nFlag}"
 				            break
 				    }
-				}
+				
             }
         }
         stage('SonarQube Analysis') {
