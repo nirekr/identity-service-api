@@ -67,6 +67,11 @@ pipeline {
                 doMvnDeploy()
             }
         }
+        stage('Upload to Repo') {
+            steps {
+                uploadArtifactsToArtifactory("/master|develop|stable|refactor-wip|feature_ests_138431|release|[A-Za-z0-9_-]+-repo/")
+            }
+		}
         stage('SonarQube Analysis') {
             steps {
                 doSonarAnalysis()
