@@ -7,7 +7,7 @@
     -->
     <groupId>com.dell.cpsd</groupId>
     <name>Identity Service API</name>
-    <version>1.2.2-SNAPSHOT-ests-138431</version>
+    <version>1.2.2-SNAPSHOT</version>
     <artifactId>identity-service-api</artifactId>
     <packaging>jar</packaging>
          
