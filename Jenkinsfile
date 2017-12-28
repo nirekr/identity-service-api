@@ -64,36 +64,8 @@ pipeline {
         }
         stage('Deploy') {
             steps {
-                
-				    def nFlag = "${params.Deploy_Stage}"
-				    if (env.BRANCH_NAME ==~ /master|q3stable|stable|feature_ests_.*/) {
-				        nFlag = "ON"
-				    }
-				    
-				    echo "Deploying identity-service-api jar"
-				    
-				    switch (nFlag) {
-				        case "ON":       
-				            if (env.BRANCH_NAME ==~ /stable.*/) {
-				                withCredentials([string(credentialsId: 'GPG-Dell-Key', variable: 'GPG_PASSPHRASE')]) {
-				                    if (params.dockerRegistry) {
-				                        sh "mvn deploy -Dmaven.repo.local=.repo -DskipTests=true -DskipITs=true -Ppublish-release -Dgpg.passphrase=${GPG_PASSPHRASE} -Dgpg.keyname=73BD7C5F -DskipJavadoc=false -DskipJavasource=false -Dexec.skip=true -Dskip=true -DskipDockerBuild=true -Ddocker.registry=${params.dockerRegistry} -DdockerImage.tag=${params.dockerImageTag}"
-				                    } else {
-				                        sh "mvn deploy -Dmaven.repo.local=.repo -DskipTests=true -DskipITs=true -Ppublish-release -Dgpg.passphrase=${GPG_PASSPHRASE} -Dgpg.keyname=73BD7C5F -DskipJavadoc=false -DskipJavasource=false -Dexec.skip=true -Dskip=true -DskipDockerBuild=true"
-				                    }
-				                }
-				            } else if (params.dockerRegistry) {
-				                sh "mvn deploy -Dmaven.repo.local=.repo -DskipTests=true -DskipITs=true -Dexec.skip=true -Dskip=true -DskipDockerBuild=true -Ddocker.registry=${params.dockerRegistry} -DdockerImage.tag=${params.dockerImageTag}"
-				            } else {
-				                sh "mvn deploy -Dmaven.repo.local=.repo -DskipTests=true -DskipITs=true -Dexec.skip=true -Dskip=true -DskipDockerBuild=true"
-				            }
-				            break
-				        default:
-				            echo "Skipping Deploy Stage: Branch -> ${env.BRANCH_NAME} Selected Flag -> ${nFlag}"
-				            break
-				    }
-				
-            }
+            	sh "mvn deploy -Dmaven.repo.local=.repo -DskipTests=true -DskipITs=true -Dexec.skip=true -Dskip=true -DskipDockerBuild=true"
+			}
         }
         stage('SonarQube Analysis') {
             steps {
