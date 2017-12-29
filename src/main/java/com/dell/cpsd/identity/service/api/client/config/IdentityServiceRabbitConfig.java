@@ -22,9 +22,7 @@ import com.dell.cpsd.identity.service.api.client.amqp.producer.AmqpIdentityServi
 import com.dell.cpsd.identity.service.api.client.amqp.producer.IdentityServiceProducer;
 import com.dell.cpsd.service.common.client.rpc.DefaultMessageConsumer;
 import com.dell.cpsd.service.common.client.rpc.DelegatingMessageConsumer;
-
 import org.springframework.amqp.rabbit.connection.ConnectionFactory;
-import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
@@ -47,7 +45,7 @@ public class IdentityServiceRabbitConfig
      * @throws IOException
      */
     @Bean(name = "rabbitContext")
-    public RabbitContext rabbitContext(ConnectionFactory rabbitConnectionFactory, @Qualifier("IdentityDelegatingMessageConsumer") DelegatingMessageConsumer consumer) throws IOException
+    public RabbitContext rabbitContext(ConnectionFactory rabbitConnectionFactory, DelegatingMessageConsumer consumer) throws IOException
     {
         ApplicationConfiguration applicationConfiguration = ApplicationConfigurationContext.getCurrent();
 
@@ -66,7 +64,6 @@ public class IdentityServiceRabbitConfig
     }
 
     @Bean
-    @Qualifier("IdentityDelegatingMessageConsumer") 
     public DelegatingMessageConsumer identityServiceConsumer()
     {
         return new DefaultMessageConsumer();
