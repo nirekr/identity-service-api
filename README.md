@@ -4,6 +4,7 @@
 [![Slack](http://img.shields.io/badge/slack-join%20the%20chat-00B9FF.svg?style=flat-square)](https://codecommunity.slack.com/messages/symphony)
 [![Maven Central](https://maven-badges.herokuapp.com/maven-central/com.dell.cpsd/identity-service-api/badge.svg)](https://maven-badges.herokuapp.com/maven-central/com.dell.cpsd/identity-service-api)
 [![Semver](http://img.shields.io/SemVer/2.0.0.png)](http://semver.org/spec/v2.0.0.html)
+[![Black Duck Security Risk](https://copilot.blackducksoftware.com/github/repos/dellemc-symphony/identity-service-api/branches/master/badge-risk.svg)](https://copilot.blackducksoftware.com/github/repos/dellemc-symphony/identity-service-api/branches/master)
 
 ## Description
 
