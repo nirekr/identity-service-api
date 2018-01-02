@@ -5,6 +5,8 @@
 
 package com.dell.cpsd.identity.service.api.client;
 
+import org.springframework.beans.factory.annotation.Qualifier;
+
 import com.dell.cpsd.common.logging.ILogger;
 import com.dell.cpsd.common.rabbitmq.context.RabbitContext;
 import com.dell.cpsd.identity.service.api.DescribeElements;
@@ -37,7 +39,7 @@ public class IdentityServiceClient extends AbstractServiceClient
     private final IdentityServiceProducer   producer;
     private final RabbitContext             rabbitContext;
 
-    IdentityServiceClient(ILogger logger, RabbitContext rabbitContext, DelegatingMessageConsumer consumer, IdentityServiceProducer producer)
+    IdentityServiceClient(ILogger logger, RabbitContext rabbitContext, @Qualifier("IdentityDelegatingMessageConsumer")  DelegatingMessageConsumer consumer, IdentityServiceProducer producer)
     {
         super(logger);
 
