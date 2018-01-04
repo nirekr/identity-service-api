@@ -5,6 +5,7 @@ UPSTREAM_TRIGGERS = [
     "common-dependencies",
     "common-messaging-parent"
 ]
+
 properties(getBuildProperties(upstreamRepos: UPSTREAM_TRIGGERS))
 
 pipeline {
