@@ -1,4 +1,4 @@
-@Library('Pipeline Libraries@olearj10-blackduck')
+@Library('Pipeline Libraries@nirekr/blackduck')
 
 UPSTREAM_TRIGGERS = [
     "common-client-parent",
@@ -49,9 +49,9 @@ pipeline {
               runFortifyScan() 
            } 
         }
-        stage('Blackduck Scan') { 
+        stage('BlackduckFortify Scan') { 
          steps { 
-              doBlackDuckScan() 
+              runblackduckfortify() 
            } 
         }
         
