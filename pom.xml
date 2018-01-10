@@ -7,33 +7,42 @@
     -->
     <groupId>com.dell.cpsd</groupId>
     <name>Identity Service API</name>
-    <version>1.2.2-SNAPSHOT</version>
+    <version>0.1.0-SNAPSHOT</version>
     <artifactId>identity-service-api</artifactId>
     <packaging>jar</packaging>
          
     <parent>
         <groupId>com.dell.cpsd</groupId>
         <artifactId>root-parent</artifactId>
-        <version>1.0.1</version>
+        <version>1.1.0</version>
     </parent>
 
     <description>
         This repository creates a UUID for any managed element.
     </description>
+
     <url>https://github.com/dellemc-symphony/identity-service-api</url>
+
     <licenses>
         <license>
             <name>Eclipse Public License - v 1.0</name>
             <url>http://www.eclipse.org/legal/epl-v10.html</url>
         </license>
     </licenses>
+
     <properties>
-        <junit-version>4.12</junit-version>
-        <maven.compiler.source>1.8</maven.compiler.source>
-        <maven.compiler.target>1.8</maven.compiler.target>
+        <!-- com.dell.cpsd Dependency Properties -->
+        <common-dependencies.version>0.1.0-SNAPSHOT</common-dependencies.version>
+        <common-messaging.version>0.1.0-SNAPSHOT</common-messaging.version>
+        <!-- External Dependency Properties -->
+        <junit.version>4.12</junit.version>
+        <mockito-core.version>2.8.9</mockito-core.version>
         <spring.framework.version>4.3.8.RELEASE</spring.framework.version>
-        <common-dependencies.version>1.2.0</common-dependencies.version>
+        <!-- Plugin Properties -->
+        <jsonschema2pojo-maven-plugin.version>0.4.27</jsonschema2pojo-maven-plugin.version>
+        <!-- Misc Properties -->
     </properties>
+
     <developers>
         <developer>
             <name>Brendan Hoey</name>
@@ -84,26 +93,26 @@
         <dependency>
             <groupId>com.dell.cpsd</groupId>
             <artifactId>common-client</artifactId>
-            <version>2.0.0</version>
+            <version>${common-messaging.version}</version>
             <scope>provided</scope>
         </dependency>
         <dependency>
             <groupId>com.dell.cpsd</groupId>
             <artifactId>common-messaging-parent</artifactId>
-            <version>2.0.0</version>
+            <version>${common-messaging.version}</version>
             <type>pom</type>
         </dependency>
         <!-- Test Dependencies -->
         <dependency>
             <groupId>junit</groupId>
             <artifactId>junit</artifactId>
-            <version>4.12</version>
+            <version>${junit.version}</version>
             <scope>compile</scope>
         </dependency>
         <dependency>
             <groupId>org.mockito</groupId>
             <artifactId>mockito-core</artifactId>
-            <version>2.8.9</version>
+            <version>${mockito-core.version}</version>
             <scope>test</scope>
         </dependency>
     </dependencies>
@@ -112,12 +121,12 @@
             <plugin>
                 <groupId>org.jsonschema2pojo</groupId>
                 <artifactId>jsonschema2pojo-maven-plugin</artifactId>
-                <version>0.4.27</version>
+                <version>${jsonschema2pojo-maven-plugin.version}</version>
                 <dependencies>
                     <dependency>
                         <groupId>com.dell.cpsd</groupId>
                         <artifactId>common-contract-enricher</artifactId>
-                        <version>2.0.0</version>
+                        <version>${common-messaging.version}</version>
                     </dependency>
                 </dependencies>
                 <executions>
